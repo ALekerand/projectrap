@@ -1,0 +1,598 @@
+@CHARSET "ISO-8859-1";
+*
+/*Template et body du projet en Bootstrap */
+
+.panelNoBorder, .panelNoBorder tr, .panelNoBorder td{
+border: hidden;
+border-color: white;
+}
+.mystyle.ui-datatable .ui-datatable-header{/* Pour la couleur du Header ds datatable*/
+background: #cc0000 !important;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-footer {/* Pour la couleur du Footer ds datatable*/
+   background: #cc0000 !important;
+}
+
+
+
+.mystyle.ui-datatable .ui-datatable-odd.ui-state-hover{/* Pour la couleur du background du curseur selectd Impaire ds datatable*/
+background: #F4E7C1 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-even.ui-state-hover{/* Pour la couleur du background du curseur selectd paire ds datatable*/
+background: #F4E7C1 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-even.ui-state-highlight{/* Pour la couleur du background des elts selectd paire ds datatable*/
+background: #c0c0c0 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-odd.ui-state-highlight{/* Pour la couleur du background des elts selectd impaire ds datatable*/
+background: #c0c0c0 ;
+
+}
+
+.mystyle.ui-datatable .ui-datatable-data-empty td {
+color:gray;
+font-weight:bold;
+}
+.ui-datatable.mystyle th {/* Pour la couleur du background des titres ds datatable*/
+background: #FFFFFF;
+font-family: verdana;
+font-size: 1em;
+}
+
+
+.mystyle.ui-datatable .ui-expanded-row-content{
+background:white;
+}
+
+.login-container {
+position: absolute;
+width: 1000px; 
+height: 500px; 
+top:0; 
+bottom:0; 
+left:0; 
+right: 0; 
+margin: auto; 
+background-image:  url(../resources/images/rapacIndex4.jpg); 
+background-repeat: no-repeat !important;
+}
+
+.global {
+    display: inline-block;
+    width: 49%;
+    line-height: 0;
+    vertical-align: middle;
+    background-size: 65% 115%;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-image: url(../resources/images/rapacIndex2.jpg);
+}
+
+
+.divSlide{
+	 display: inline-block;
+    width: 99%;
+    line-height: 0;
+    vertical-align: middle;
+    background-size: 100% 140%;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-image: url(../../resources/images/bgdiv.jpg);
+	
+}
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+fieldset {
+  padding: .35em .625em .75em;
+  margin: 0 2px;
+  border: 1px solid #c0c0c0;
+}
+
+html {
+  font-size: 10px;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  	 
+        
+}
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.ui-layout, .ui-layout-unit {
+	border: 0px;
+}
+
+
+ .btn > .caret,
+  .dropup > .btn > .caret {
+    border-top-color: #000 !important;
+  }
+  .btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.btn:hover,
+.btn:focus,
+.btn.focus {
+  color: #333;
+  text-decoration: none;
+}
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-image: none;
+}
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-default .badge {
+  color: #fff;
+  background-color: #333;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.btn-primary .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+.btn-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.identifiant{
+  text-transform : uppercase;
+}
+.tabviewCarteG{
+width: 1000px;
+	height:400px;
+	background-color: #FFFFFF;
+	margin: 0 auto;	
+}
+
+.ui-inputfield{ /* Pour fixer tout les champs input et autre*/
+	width: 143px;
+}
+
+
+
+/* Global */
+body {
+	/*padding: 30px 0; */
+	/*color: #F0E39E;*/
+	/*background: #2C2F22;*/
+}
+
+ui-inputfield{
+	height: 10px !important;
+}
+
+.ui-menubar{
+	
+	border-radius: 3px;
+	margin-left:0px;
+	margin-right: 0px;
+	background: #A8A8A8;
+	mouseover: none !important; 
+}
+
+.ui-state-hover {cursor:hand; }
+.ui-menuitem-text{
+	color: black;
+	font-weight: bold;
+	font-size: 80%;
+}
+
+
+
+
+.ui-selectmanymenu {
+	height: 60px !important;
+}
+
+.columnLoginHeader {
+	 font-weight:bold;
+	 color:white;
+	 text-align:center;
+}
+
+.columnLogin1 {
+	 border:1px solid #ccc; 
+	 font-weight:bold; 
+	 color:blue;
+	 text-align:right;
+	 
+}
+
+.columnLogin2 {
+	border:1px solid #ccc;
+}
+
+.columnFooter1 {
+	border:none;
+}
+.inputTextLogin {
+	font-weight:bold; 
+	color:red;
+}
+/* fin Template et body du projet en Bootstrap */
+
+
+
+
+
+/* -------------CSS metier -----------------------------*/
+
+
+/* -------------CSS Icon -----------------------------*/
+.rowPanel{
+	border: 2px;
+	
+}
+.accueil{
+	 background: url(../resources/images/house.png) no-repeat !important;
+            height: 16px;
+            width: 16px;
+}
+
+.creation{
+	 background: url(../resources/images/creation.png) no-repeat !important;
+            height: 16px;
+            width: 16px;
+            
+}
+
+.elaborer{
+	 background: url(../resources/images/elaborer.png) no-repeat !important;
+            height: 16px;
+            width: 16px;
+            
+}
+
+
+.close{
+	 background: url(../resources/images/close.png) no-repeat !important;
+            height: 16px;
+            width: 16px;
+            
+}
+
+.rapport{
+	 background: url(../resources/images/rapport.jpg) no-repeat !important;
+            height: 16px;
+            width: 16px;
+            
+}
+
+.received{
+	 background: url(../resources/images/received.jpg) no-repeat !important;
+            height: 16px;
+            width: 16px;
+            
+}
+
+.send{
+	 background: url(../resources/images/send.png) no-repeat !important;
+            height: 14px;
+            width: 14px;
+            
+}
+
+/* ------------Fin-CSS Icon -----------------------------*/
+.subMenu{
+	margin-left: 5px;
+}
+
+.panelCreation {
+	width: 20%;
+	vertical-align: top;
+}
+.outputDecalage {
+	margin-left: 35px;
+}
+.outputDecalage2 {
+	margin-left: 16px;
+	 
+}
+
+.outputDecalage3 {
+	margin-left: 10px;
+}
+
+.outputMenu{
+ font-size:12px;
+	color:black;
+	font-family:verdana;	
+}
+.outputH{
+ font-size:12px;
+	color:black;
+	font-family:verdana;	
+}
+.outputextQ{
+	font-size:12px;
+	color:black;
+	font-family:arial;
+	
+}
+.outputextQ1{
+	font-size:12px;
+	color:black;
+	font-family:arial;
+	margin-left: 5px !important;	
+}
+.outputextQ2{
+	
+	font-size:11px;
+	color:black;
+	font-family:arial;
+	margin-left: 5px;	
+	
+}
+
+.inputCG2{
+	width:150px;
+	height: 20px;
+	font-size:10px;
+	color:black;
+	font-family:arial;
+	
+}
+.inputCG21{
+	width:110px;
+	height: 20px;
+	font-size:10px;
+	color:black;
+	font-family:arial;
+	
+}
+.inputCG3{
+	width:70px;
+	height: 20px;
+	font-size:10px;
+	color:black;
+	font-family:arial;
+}
+.inputCG4{
+	width:40px;
+	height: 20px;
+	font-size:10px;
+	color:black;
+	font-family:arial;
+}
+
+.outputextCG{
+		/*Libelle col1 propriété */
+	
+font-size:12px;
+	color:black;
+	font-family:arial;	
+	margin-left: 5px !important;	
+}
+
+.outputextMargin5{
+		/*Libelle col1 propriété */
+	
+	margin-left: 5px !important;	
+}
+.outputextMargin30{
+		/*Libelle col1 propriété*/
+	
+	margin-left: 30px !important;	
+}
+
+
+
+
+.missGrid{
+	width: 90%;
+}
+.zoneRech{
+	width: 20%;
+	vertical-align: top;
+}
+.zoneDetail{
+	width: 80%;
+	vertical-align: top;
+}
+
+.partTabl{
+	width: 12%;
+	vertical-align: top;
+}
+.partDetail{
+		width: 88%;
+}
+
+.dossMissTabl{
+	width: 65%;
+	vertical-align: top;
+}
+.dossTabl{
+		width: 35%;
+		vertical-align: top;
+}
+
+}
+.dossDetail{
+		width: 25%;
+}
+
+.dossEtatTabl{
+	width: 70%;
+	vertical-align: top;
+}
+.budEtatTabl{
+		width: 30%;
+		vertical-align: top;
+}
+
+
+legend{
+	color:#7f344b;
+	font-weight: bold;
+}
+
+.styleCode{
+	/*background-color: #e6e3e4;#C5C1C3*/
+	background-color:#C5C1C3;
+	color: #f10707;
+	width: 130px;
+	height: 23px;
+	border: thin;
+	border-left: 5px;
+	font-weight: 700;
+	padding-left: 5px;
+}
+.styleCodeQ{
+	background-color: #e6e3e4;
+	color: #f10707;
+	width: 150px;
+	height: 23px;
+	border: thin;
+	border-left: 5px;
+	font-weight: 700;
+	padding-left: 5px;
+}
+.styleCodeContr{
+	background-color: #e6e3e4;
+	color: #f10707;
+	width: 155px;
+	height: 23px;
+	border: thin;
+	border-left: 5px;
+	font-weight: 700;
+	padding-left: 5px;
+}
+#top .ui-layout-unit .ui-layout-unit-content {
+/*overflow: hidden !important;*/
+height: auto !important;
+}
+/* -------------Fin CSS metier -----------------------------*/
+
+
+
+
+

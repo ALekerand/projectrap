@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="gnlAap">
+			<div align="center">
+
+				<p:panel header="Affectation des Aires Protégées">
+					<p:messages id="message" showDetail="false" autoUpdate="true"
+						closable="true" />
+
+					<h:panelGrid style="width:100%" columns="2"
+						columnClasses="zoneRech,zoneDetail" border="1">
+						
+						<h:panelGrid style="width:100%">
+						<p:fieldset>  
+						<legend> Recherche </legend>
+						<br />
+							<p:panelGrid id="panelRech" style="width:100%">
+
+ 
+ 
+ 							<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Code AP</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{affectationController.rechCode}"
+												style="width:80%;" />
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Catégorie Nationale</p:column>
+								</p:row>
+								<p:row>
+								
+								<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:70%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItem itemLabel="Parc National" itemValue="P" />
+											<f:selectItem itemLabel="Reserve" itemValue="R" />
+										</p:selectOneMenu>
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Pays</p:column>
+								</p:row>
+								<p:row>
+									 <p:column colspan="2">
+					<p:selectOneMenu value="#{affectationController.rechPays}"   style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             		<f:selectItems value="#{entityList.listPays}" var="tf" itemLabel="#{tf.payLibLong}" itemValue="#{tf.payLibCourt}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="2">Nom</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{affectationController.rechNom}"
+												style="width:80%;" />
+									</p:column>
+
+								</p:row>
+								
+								<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelRecherche" columns="2">
+											<p:commandButton value="Recherche"
+												actionListener="#{affectationController.checkRecherche}"
+												icon="ui-icon-search" update=":gnlAap">
+											</p:commandButton>
+
+											<p:commandButton value="Rafraichir"
+												actionListener="#{affectationController.cleanRecherche}"
+												icon="ui-icon-arrowrefresh-1-n" update=":gnlAap">
+											</p:commandButton>
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+						
+						</p:fieldset>
+						</h:panelGrid>
+						
+						
+						
+						<h:panelGrid style="width:100%">
+							<p:panelGrid id="panelChamps" style="width:100%">
+
+
+								<!-- Ligne 1 -->
+								<p:row>
+								<p:column colspan="2">Liste AP</p:column>
+													 <p:column colspan="2">
+									<p:selectOneMenu value="#{affectationController.slctdAP}"   style="width:80%;">
+									 <f:selectItem  itemLabel="" itemValue=""/>  
+				             		<f:selectItems value="#{affectationController.listAirp}" var="ap" itemLabel="#{ap.aipNomUtilise}" itemValue="#{ap.aipCod}"/>  
+				             		<p:ajax listener="#{affectationController.checkAfByAP}" process="@this" update="ApCod, ApPays, ApCat, ApNom, ApNomc, ndTble"></p:ajax>
+				       			 </p:selectOneMenu>
+									</p:column>
+									<p:column colspan="2">Code AP</p:column>
+									<p:column colspan="2">
+										<p:columnGroup>
+											<h:inputText id="ApCod"
+												value="#{affectationController.slctd.airProtegee.aipCod}"
+												style="width:90%;" disabled="true" />
+											<p:message for="ApCod" display="icon" />
+										</p:columnGroup>
+									</p:column>
+									<p:column colspan="4"></p:column>
+
+								</p:row>
+
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Pays AP </p:column>
+									<p:column colspan="2">
+										<h:inputText id="ApPays"
+											value="#{affectationController.slctd.airProtegee.pays.payLibLong}"
+											disabled="true" style="width:90%;" />
+									</p:column>
+
+
+									<p:column colspan="2">Catégorie Nationale </p:column>
+									<p:column colspan="2">
+										<h:inputText  id="ApCat"
+											value="#{affectationController.slctd.airProtegee.aipCategNatio}" disabled="true"
+											style="width:90%;"/>
+									</p:column>
+
+									
+							
+								</p:row>
+
+
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Nom AP</p:column>
+									<p:column colspan="2">
+										<p:inputText id="ApNom"
+											value="#{affectationController.slctd.airProtegee.aipNomUtilise}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:88%;" />
+									</p:column>
+
+									<p:column colspan="2">Nom Complet AP </p:column>
+									<p:column colspan="4">
+										<p:inputText id="ApNomc"
+											value="#{affectationController.slctd.airProtegee.aipNomComplet}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:88%;" />
+									</p:column>
+
+									
+								</p:row>
+								
+								<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="2">Fonction</p:column>
+													 <p:column colspan="2">
+					<p:selectOneMenu value="#{affectationController.slctd.fonction.fonCod}"   style="width:80%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             		<f:selectItems value="#{affectationController.listFonction}" var="tf" itemLabel="#{tf.fonLibelle}" itemValue="#{tf.fonCod}"/>  
+             		
+       			 </p:selectOneMenu>
+									</p:column>
+									
+
+									<p:column colspan="4"></p:column>
+									
+								</p:row>
+
+							<!-- Ligne 5 -->
+								<p:row>
+									<p:column colspan="2">Date Début</p:column>
+									<p:column colspan="2">
+										<p:calendar  value="#{affectationController.slctd.affDatDeb}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+									</p:column>
+
+									<p:column colspan="2">Date Fin </p:column>
+									<p:column colspan="2">
+										<p:calendar  value="#{affectationController.slctd.affDatFin}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+									</p:column>
+
+									
+								</p:row>
+								
+							</p:panelGrid>
+
+
+
+							<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelButton" columns="8">
+
+
+											<p:commandButton value="Nouveau"
+												actionListener="#{affectationController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Créer une nouvelle AP ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+
+											<p:commandButton value="Enregistrer"
+												actionListener="#{affectationController.create}"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Enregistrer ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Modifier"
+												actionListener="#{affectationController.update}"
+												icon="ui-icon-pencil" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Modifier ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Annuler"
+												actionListener="#{affectationController.chechCode}" rendered="false"
+												icon="ui-icon-cancel" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Annuler ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+		
+
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+							<p:panelGrid style="width:100%">
+								<h:panelGrid style="width:100%; vertical-align: top;">
+									<p:dataTable id="ndTble" var="nd"
+										value="#{affectationController.objetListe}"
+										selectionMode="single"
+										selection="#{affectationController.slctdTb}"
+										rowKey="#{nd.affId}" emptyMessage="">
+
+										<p:ajax event="rowSelect"
+											listener="#{affectationController.onRowSelect}"
+											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
+										<p:ajax event="rowUnselect"
+											listener="#{affectationController.onRowUnSelect}"
+											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
+
+										<p:column headerText="Code AP" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipCod}" />
+										</p:column>
+
+										<p:column headerText="Nom AP" style="width:30%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipNomUtilise}" />
+										</p:column>
+
+
+										<p:column headerText="Catégorie AP" style="width:15%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipCategNatio}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+
+										</p:column>
+
+										<p:column headerText="Fonction" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.fonction.fonLibelle}" />
+										</p:column>
+										
+										<p:column headerText="Début" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.affDatDeb}">
+											 <f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</p:column>
+										
+										<p:column headerText="Fin" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.affDatFin}">
+											 <f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</p:column>
+
+									</p:dataTable>
+								</h:panelGrid>
+
+							</p:panelGrid>
+						</h:panelGrid>
+
+
+					</h:panelGrid>
+
+				</p:panel>
+
+
+			</div>
+
+		</h:form>
+
+
+		<!-- ConfirmDialog  -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			width="30%" height="25%">
+			<div align="center">
+				<p:commandButton value="Confirmer" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Annuler" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

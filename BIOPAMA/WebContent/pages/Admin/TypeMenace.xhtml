@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+<h:form id="gnlTF">	
+		<div align="center">
+		
+					<p:panel header="Paramètre Type Ménace">
+						<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:80%"  border="1">
+						<h:panelGrid style="width:100%">
+						<p:panelGrid id="panelChamps" style="width:100%">
+				
+         <!-- Ligne 1 -->
+        <p:row>
+            <p:column colspan="2">Libellé Type Ménace*</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="libNDoc" value="#{typeMenacController.slctd.tmeLibelle}"
+						required="true"  requiredMessage="Indiquez un Libellé" style="width:40%;">
+											<p:ajax event="blur" listener="#{typeMenacController.validationChamp}" update="panelButton"></p:ajax>
+						</p:inputText>  
+					<p:message for="libNDoc"  display="icon" /></p:columnGroup>
+					</p:column>
+			<p:column colspan="8"></p:column>			
+        </p:row>
+
+     <!-- Ligne 11 -->
+     <p:row>
+    <p:column  colspan="12"><p:separator></p:separator></p:column>
+    </p:row>
+    
+     <!-- Ligne 12 -->
+     <p:row>
+    <p:column  colspan="10">
+    <div align="center">
+    <p:panelGrid id="panelButton" columns="8">
+    
+     <p:commandButton value="Enregistrer"  actionListener="#{typeMenacController.create}"  disabled="#{typeMenacController.creer}" update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Enregistrer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Modifier"  actionListener="#{typeMenacController.update}" disabled="#{typeMenacController.modifier}" update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Modifier ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Supprimer"  actionListener="#{typeMenacController.delete}" rendered="false"  disabled="#{typeMenacController.supprimer}"  update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Supprimer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    </p:panelGrid>
+    </div>
+    </p:column>
+    </p:row>
+    
+   </p:panelGrid>
+   </h:panelGrid>	
+   
+   				<h:panelGrid style="width:100%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{typeMenacController.objetListe}"
+							selectionMode="single"
+							selection="#{typeMenacController.slctdTb}"
+							rowKey="#{nd.tmeCod}"
+							 emptyMessage="">
+
+							<p:ajax event="rowSelect"
+							listener="#{typeMenacController.onRowSelectDoss}"
+								update=":gnlTF:ndTble, :gnlTF:panelChamps"/>
+								<p:ajax event="rowUnselect"
+							listener="#{typeMenacController.onRowUnSelect}"
+								update=":gnlTF:ndTble, :gnlTF:panelChamps"/>	
+
+							<p:column headerText="Code" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.tmeCod}" />
+							</p:column>
+							
+							<p:column headerText="Libellé Type Ménace" style="width:80%" styleClass="outputH">
+								<h:outputText value="#{nd.tmeLibelle}" />
+							</p:column>
+
+
+						</p:dataTable></h:panelGrid>
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+		
+		
+  <!-- ConfirmDialog  -->
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  width="30%" height="25%" >
+ 		<div align="center">
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </div>
+    </p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

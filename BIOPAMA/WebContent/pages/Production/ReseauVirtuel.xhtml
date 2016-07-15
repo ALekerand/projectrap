@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="gnlAap">
+			<div align="center">
+
+				<p:panel header="Création d'un Reseau Virtuel des Aires Protégées">
+					<p:messages id="message" showDetail="false" autoUpdate="true"
+						closable="true" />
+
+					<h:panelGrid style="width:100%" columns="2"
+						columnClasses="zoneRech,zoneDetail" border="1">
+						
+						<h:panelGrid style="width:100%">
+						<p:fieldset>  
+						<legend> Recherche </legend>
+						<br />
+							<p:panelGrid id="panelRech" style="width:100%">
+
+ 
+ 
+ 							<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Code AP</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{reseauVirController.rechCode}"
+												style="width:80%;" />
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Catégorie Nationale</p:column>
+								</p:row>
+								<p:row>
+								
+								<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{reseauVirController.rechType}"
+											style="width:70%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItem itemLabel="Parc National" itemValue="P" />
+											<f:selectItem itemLabel="Reserve" itemValue="R" />
+										</p:selectOneMenu>
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Pays</p:column>
+								</p:row>
+								<p:row>
+									 <p:column colspan="2">
+					<p:selectOneMenu value="#{reseauVirController.rechPays}"   style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             		<f:selectItems value="#{entityList.listPays}" var="tf" itemLabel="#{tf.payLibLong}" itemValue="#{tf.payLibCourt}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="2">Nom</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{reseauVirController.rechNom}"
+												style="width:80%;" />
+									</p:column>
+
+								</p:row>
+								
+								<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelRecherche" columns="2">
+											<p:commandButton value="Recherche"
+												actionListener="#{reseauVirController.checkRecherche}"
+												icon="ui-icon-search" update=":gnlAap">
+											</p:commandButton>
+
+											<p:commandButton value="Rafraichir"
+												actionListener="#{reseauVirController.cleanRecherche}"
+												icon="ui-icon-arrowrefresh-1-n" update=":gnlAap">
+											</p:commandButton>
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+						
+						</p:fieldset>
+						</h:panelGrid>
+						
+						
+						
+						<h:panelGrid style="width:100%">
+							<p:panelGrid id="panelChamps" style="width:100%">
+
+
+								<!-- Ligne 1 -->
+								<p:row>
+								<p:column colspan="2">Liste AP</p:column>
+													 <p:column colspan="2">
+									<p:selectOneMenu value="#{reseauVirController.slctdAP}"   style="width:80%;">
+									 <f:selectItem  itemLabel="" itemValue=""/>  
+				             		<f:selectItems value="#{reseauVirController.listAirp}" var="ap" itemLabel="#{ap.aipNomUtilise}" itemValue="#{ap.aipCod}"/>  
+				             		<p:ajax listener="#{reseauVirController.checkRvByAP}" process="@this" update="ApCod, ApPays, ApCat, ApNom, ApNomc, ndTble"></p:ajax>
+				       			 </p:selectOneMenu>
+									</p:column>
+									<p:column colspan="2">Code AP</p:column>
+									<p:column colspan="2">
+										<p:columnGroup>
+											<h:inputText id="ApCod"
+												value="#{reseauVirController.slctd.airProtegee.aipCod}"
+												style="width:90%;" disabled="true" />
+											<p:message for="ApCod" display="icon" />
+										</p:columnGroup>
+									</p:column>
+									<p:column colspan="4"></p:column>
+
+								</p:row>
+
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Pays AP </p:column>
+									<p:column colspan="2">
+										<h:inputText id="ApPays"
+											value="#{reseauVirController.slctd.airProtegee.pays.payLibLong}"
+											disabled="true" style="width:90%;" />
+									</p:column>
+
+
+									<p:column colspan="2">Catégorie Nationale </p:column>
+									<p:column colspan="2">
+										<h:inputText  id="ApCat"
+											value="#{reseauVirController.slctd.airProtegee.aipCategNatio}" disabled="true"
+											style="width:90%;"/>
+									</p:column>
+
+									
+							
+								</p:row>
+
+
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Nom AP</p:column>
+									<p:column colspan="2">
+										<p:inputText id="ApNom"
+											value="#{reseauVirController.slctd.airProtegee.aipNomUtilise}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:88%;" />
+									</p:column>
+
+									<p:column colspan="2">Nom Complet AP </p:column>
+									<p:column colspan="4">
+										<p:inputText id="ApNomc"
+											value="#{reseauVirController.slctd.airProtegee.aipNomComplet}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:88%;" />
+									</p:column>
+
+									
+								</p:row>
+								
+									<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="8"> <div align="center">--------- Réseau Virtuel ---------</div></p:column>
+								</p:row>
+								
+								<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Catégorie AP*</p:column>
+										<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{reseauVirController.slctdCat}"
+											style="width:80%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItems value="#{reseauVirController.listCatAp}" var="cat" itemLabel="#{cat.caaLibelle}" itemValue="#{cat.caaCod}"/>  
+				             		<p:ajax listener="#{reseauVirController.checkCat}" process="@this" update="CatLib, CatTyp"></p:ajax>
+										</p:selectOneMenu>
+									</p:column>
+									<p:column colspan="4"></p:column>
+								</p:row>
+								
+								<!-- Ligne 2 -->
+								<p:row>
+									
+									<p:column colspan="2">Libelle Catégorie</p:column>
+									<p:column colspan="2">
+										<p:inputText id="CatLib"
+											value="#{reseauVirController.slctd.categorieAp.caaLibelle}"
+											disabled="true" style="width:90%;" />
+									</p:column>
+
+
+									<p:column colspan="2">Type Catégorie</p:column>
+									<p:column colspan="2">
+										<p:inputText id="CatTyp"
+											value="#{reseauVirController.slctd.categorieAp.caaType}"
+											disabled="true" style="width:90%;"/>
+								
+									</p:column>
+									
+
+								</p:row>
+								
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Date Début</p:column>
+									<p:column colspan="2">
+										<p:calendar  value="#{reseauVirController.slctd.ravDatDeb}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+									</p:column>
+
+									<p:column colspan="2">Date Fin </p:column>
+									<p:column colspan="2">
+										<p:calendar  value="#{reseauVirController.slctd.ravDatFin}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+									</p:column>
+
+								</p:row>
+								
+								
+								<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="2">Statut*</p:column>
+										<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{reseauVirController.slctd.ravStatut}"
+											style="width:80%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItem itemLabel="Statut1" itemValue="P1" />
+											<f:selectItem itemLabel="Statut2" itemValue="R1" />
+										</p:selectOneMenu>
+									</p:column>
+								
+
+									<p:column colspan="6"> </p:column>
+									
+								</p:row>
+
+							
+								
+							</p:panelGrid>
+
+
+
+							<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelButton" columns="8">
+
+
+											<p:commandButton value="Nouveau"
+												actionListener="#{reseauVirController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Créer une nouvelle AP ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+
+											<p:commandButton value="Enregistrer"
+												actionListener="#{reseauVirController.create}"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Enregistrer ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Modifier"
+												actionListener="#{reseauVirController.update}"
+												icon="ui-icon-pencil" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Modifier ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Annuler"
+												actionListener="#{reseauVirController.chechCode}" rendered="false"
+												icon="ui-icon-cancel" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Annuler ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+		
+
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+							<p:panelGrid style="width:100%">
+								<h:panelGrid style="width:100%; vertical-align: top;">
+									<p:dataTable id="ndTble" var="nd"
+										value="#{reseauVirController.objetListe}"
+										selectionMode="single"
+										selection="#{reseauVirController.slctdTb}"
+										rowKey="#{nd.ravId}" emptyMessage="">
+
+										<p:ajax event="rowSelect"
+											listener="#{reseauVirController.onRowSelect}"
+											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
+										<p:ajax event="rowUnselect"
+											listener="#{reseauVirController.onRowUnSelect}"
+											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
+
+										<p:column headerText="Code AP" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipCod}" />
+										</p:column>
+
+										<p:column headerText="Nom AP" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipNomUtilise}" />
+										</p:column>
+
+
+										<p:column headerText="Catégorie réseau" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.categorieAp.caaLibelle}" />
+										</p:column>
+
+										<p:column headerText="Type" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.categorieAp.caaType}" />
+										</p:column>
+
+										<p:column headerText="Debut" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.ravDatDeb}" >
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</p:column>
+										
+												<p:column headerText="Fin" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.ravDatFin}" >
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+										</p:column>
+										
+												<p:column headerText="Statut" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.ravStatut}" />
+										</p:column>
+										
+										
+
+									</p:dataTable>
+								</h:panelGrid>
+
+							</p:panelGrid>
+						</h:panelGrid>
+
+
+					</h:panelGrid>
+
+				</p:panel>
+
+
+			</div>
+
+		</h:form>
+
+
+		<!-- ConfirmDialog  -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			width="30%" height="25%">
+			<div align="center">
+				<p:commandButton value="Confirmer" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Annuler" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

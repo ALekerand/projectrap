@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+<h:form id="gnlAss">	
+		<div align="center">
+		
+					<p:panel header="Paramètre Assignation">
+						<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:80%"  border="1">
+						<h:panelGrid style="width:100%">
+		
+             <div align="left">
+    <p:panelGrid id="panelButton" columns="8"  style="width:100%">
+    
+     <p:commandButton value="Rafraîchir"  actionListener="#{assignationController.chargeData}"  update=":gnlAss" >
+    </p:commandButton>
+  
+    </p:panelGrid>
+    </div> 
+    
+   </h:panelGrid>	
+   
+   				<h:panelGrid style="width:100%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{assignationController.objetListe}"
+							rowKey="#{nd.nOrdr}"
+							 emptyMessage="">
+
+							<p:column headerText="Matricule" style="width:10%" >
+								<h:outputText value="#{nd.operateur.opeMatricule}" />
+							</p:column>
+							
+							<p:column headerText="Nom Opérateure" style="width:20%" >
+								<h:outputText value="#{nd.operateur.opeNom}" />
+							</p:column>
+							
+							<p:column headerText="Contact" style="width:10%" >
+								<h:outputText value="#{nd.operateur.opeContact}" />
+							</p:column>
+							
+							<p:column headerText="Etat Civil" style="width:10%" >
+								<h:outputText value="#{nd.operateur.opeEtatCivil}" />
+							</p:column>
+							
+							<p:column headerText="Email" style="width:20%" >
+								<h:outputText value="#{nd.operateur.opeMail}" />
+							</p:column>
+							
+							<p:column headerText="Login" style="width:20%" >
+								<h:outputText value="#{nd.operateur.opeLogin}" />
+							</p:column>
+
+						<p:column headerText="Ajout Fonction" style="width:10%;text-align: center" >
+             <p:commandButton update=":gnlDAss" actionListener="#{assignationController.viderChamps}" oncomplete="PF('editAss').show()" icon="ui-icon-search" title="detail">
+                <f:setPropertyActionListener value="#{nd}" target="#{assignationController.slctd}" />
+            </p:commandButton>
+        </p:column>
+						</p:dataTable></h:panelGrid>
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+		
+		
+
+<!-- Dialogue Ass -->
+		<p:dialog id="dialAss" header="Ajout des Assignations" widgetVar="editAss"
+			resizable="false" width="80%" height="80%"
+			showEffect="fade" hideEffect="fade" modal="true" dynamic="true"
+			appendTo="@(body)">
+			   
+			   <h:form id="gnlDAss">	
+		<div align="center">
+		
+					<p:panel header="Paramètre Assignation">
+					<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:100%"  border="1">
+						<h:panelGrid style="width:100%">
+						<p:panelGrid id="panelChamps" style="width:100%">
+						
+						
+				
+         <!-- Ligne 1 -->
+         <p:row>
+         
+         <p:column colspan="2">Code Fonction</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="codf" value="#{assignationController.slctdAss.fonction.fonCod}" style="width:70%;"
+						disabled="true">
+						</p:inputText>  
+					<p:message for="codf"  display="icon" /></p:columnGroup>
+					</p:column>
+					
+					<p:column colspan="2">Pays *</p:column>
+            <p:column colspan="2">
+					<p:selectOneMenu value="#{assignationController.slctdAss.fonction.pays.payLibCourt}" disabled="#{assignationController.typef}"  style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             <f:selectItems value="#{entityList.listPays}" var="tf" itemLabel="#{tf.payLibLong}" itemValue="#{tf.payLibCourt}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+			
+							
+        </p:row>
+        
+                 <!-- Ligne 2 -->
+         <p:row>
+         
+                <p:column colspan="2">Libellé Fonction *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="libf" value="#{assignationController.slctdAss.fonction.fonLibelle}" disabled="#{assignationController.typef}"  style="width:70%;">
+						</p:inputText>  
+					<p:message for="libf"  display="icon" /></p:columnGroup>
+					</p:column>
+         
+         <p:column colspan="4"></p:column>
+          
+        </p:row>
+        
+                        <!-- Ligne 2 -->
+         <p:row>
+         
+ 
+         <p:column colspan="2">Adresse Fonction</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="adf" value="#{assignationController.slctdAss.fonction.fonAdr}" style="width:70%;">
+						</p:inputText>  
+					<p:message for="adf"  display="icon" /></p:columnGroup>
+					</p:column>
+			
+            <p:column colspan="2">N° Tel Fonction</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="telf" value="#{assignationController.slctdAss.fonction.fonTel}" style="width:70%;">
+											
+						</p:inputText>  
+					<p:message for="telf"  display="icon" /></p:columnGroup>
+					</p:column>
+							
+        </p:row>
+
+     <!-- Ligne 3 -->
+      <p:row>
+         
+            <p:column colspan="2">Date Debut Fonction *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+            <p:calendar id="datedeb" value="#{assignationController.slctdAss.fonction.fonDatDeb}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+					<p:message for="datedeb"  display="icon" /></p:columnGroup></p:column>
+			
+			
+            <p:column colspan="2">Date Fin Fonction *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+            <p:calendar id="datefin" value="#{assignationController.slctdAss.fonction.fonDatFin}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+					<p:message for="datefin"  display="icon" /></p:columnGroup></p:column>
+							
+        </p:row>
+        
+        
+                 <!-- Ligne 4 -->
+        <p:row>
+            <p:column colspan="2">Type Fonction *</p:column>
+            <p:column colspan="2">
+					<p:selectOneMenu value="#{assignationController.slctdAss.fonction.typeFonction.tyfLibelle}" disabled="#{assignationController.typef}"  style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             <f:selectItems value="#{entityList.listTypeFonction}" var="tf" itemLabel="#{tf.tyfLibelle}" itemValue="#{tf.tyfLibelle}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+			
+			<p:column colspan="4"> </p:column>
+           
+							
+        </p:row>
+        
+         <!-- Ligne 5 -->
+      <p:row>
+         
+            <p:column colspan="2">Date Debut Assignation *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+            <p:calendar id="datedeba" value="#{assignationController.slctdAss.assDatDeb}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+					<p:message for="datedeba"  display="icon" /></p:columnGroup></p:column>
+			
+			
+            <p:column colspan="2">Date Fin Assignation *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+            <p:calendar id="datefina" value="#{assignationController.slctdAss.assDatFin}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+					<p:message for="datefina"  display="icon" /></p:columnGroup></p:column>
+							
+        </p:row>
+        
+                       <!-- Ligne 6 -->
+         <p:row>
+         
+         <p:column colspan="2">Statut Compte</p:column>
+            <p:column colspan="2">
+            <p:selectOneMenu value="#{assignationController.slctdAss.assStatut}" style="width:70%;">
+            <f:selectItem itemLabel="" itemValue=""/> 
+             <f:selectItem itemLabel="Activer" itemValue="true"/> 
+              <f:selectItem itemLabel="Désactiver" itemValue="false"/>   
+       			 </p:selectOneMenu>
+					
+					</p:column>
+			
+            <p:column colspan="4"></p:column>
+							
+        </p:row>
+        
+     <!-- Ligne 11 -->
+     <p:row>
+    <p:column  colspan="12"><p:separator></p:separator></p:column>
+    </p:row>
+    
+     <!-- Ligne 12 -->
+     <p:row>
+    <p:column  colspan="10">
+    <div align="center">
+    <p:panelGrid id="panelButton" columns="8">
+    
+        <p:commandButton value="Vider les Champs"  actionListener="#{assignationController.viderChamps}" update=":gnlDAss:ndTble, :gnlDAss:panelChamps"  >
+    <p:confirm header="Confirmation" message="Voulez-vous Vider les champs ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+     <p:commandButton value="Enregistrer"  actionListener="#{assignationController.create}" disabled="#{assignationController.creer}" update=":gnlDAss:ndTble, :gnlDAss:panelChamps, :gnlDAss:message" >
+    <p:confirm header="Confirmation" message="Voulez-vous Enregistrer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Modifier"  actionListener="#{assignationController.update}" disabled="#{assignationController.modifier}" update=":gnlDAss:ndTble, :gnlDAss:panelChamps, :gnlDAss:message"  >
+    <p:confirm header="Confirmation" message="Voulez-vous Modifier ?" icon="ui-icon-alert" />
+    </p:commandButton>
+
+    
+    </p:panelGrid>
+    </div>
+    </p:column>
+    </p:row>
+    
+   </p:panelGrid>
+   </h:panelGrid>	
+   
+   				<h:panelGrid style="width:100%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{assignationController.slctd.assListe}"
+							selectionMode="single"
+							selection="#{assignationController.slctdAssTb}"
+							rowKey="#{nd.assNum}"
+							
+							 emptyMessage="">
+
+							<p:ajax event="rowSelect"
+							listener="#{assignationController.onRowSelectAss}"
+								update=":gnlDAss:ndTble, :gnlDAss:panelChamps"/>	
+
+							<p:column headerText="Libellé Fonction" style="width:30%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.fonLibelle}" />
+							</p:column>
+							
+							<p:column headerText="Adresse" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.fonAdr}" />
+							</p:column>
+							
+							<p:column headerText="Téléphone" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.fonTel}" />
+							</p:column>
+							
+							<p:column headerText="Fonc Debut" style="width:10%" styleClass="outputH">
+							<h:outputText value="#{nd.fonction.fonDatDeb}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							
+								<p:column headerText="Fonc Fin" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.fonDatFin}">
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							 
+							<p:column headerText="Type Fonction" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.typeFonction.tyfLibelle}" />
+							</p:column>
+							
+						<p:column headerText="Ass Debut" style="width:10%" styleClass="outputH">
+							<h:outputText value="#{nd.assDatFin}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							
+								<p:column headerText="Ass Fin" style="width:10%" styleClass="outputH">
+							<h:outputText value="#{nd.assDatFin}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							
+							<p:column headerText="Statut" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.assStatut ? 'Activer' : 'Désactiver'} " >
+								</h:outputText>
+							
+								
+							</p:column>
+					
+
+						</p:dataTable></h:panelGrid>
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+					
+					
+			
+</p:dialog>
+
+		
+		
+  <!-- ConfirmDialog  -->
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  width="30%" height="25%" >
+ 		<div align="center">
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </div>
+    </p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

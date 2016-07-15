@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateCon.xhtml">
+
+	<ui:define name="content">
+<h:form id="gnlTF">	
+		<div align="center">
+		
+					<p:panel header="Choix de la Fonction">
+						<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:90%"  border="1">
+						<h:panelGrid style="width:100%">
+						<p:panelGrid id="panelChamps" style="width:100%">
+				
+      <p:row>
+      <p:column>
+       	<h:panelGrid style="width:100%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{fonctionController.objetListe}"
+							selectionMode="single"
+							selection="#{fonctionController.slctdTb}"
+							rowKey="#{nd.fonCod}"
+							 emptyMessage="">
+
+							<p:ajax event="rowSelect"
+							listener="#{fonctionController.onRowSelect}"
+								update=":gnlTF:ndTble, :gnlTF:panelChamps"/>
+								<p:ajax event="rowUnselect"
+							listener="#{fonctionController.onRowUnSelect}"
+								update=":gnlTF:ndTble, :gnlTF:panelChamps"/>	
+								
+								<p:column headerText="Code Fonction" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonCod}" />
+							</p:column>
+
+							<p:column headerText="Libellé Fonction" style="width:30%" styleClass="outputH">
+								<h:outputText value="#{nd.fonLibelle}" />
+							</p:column>
+							
+							
+								<p:column headerText="Fonc Fin" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonDatFin}">
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							 
+							<p:column headerText="Type Fonction" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.typeFonction.tyfLibelle}" />
+							</p:column>
+
+							<p:column headerText="Pays" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.pays.payLibLong}" />
+							</p:column>
+
+
+						</p:dataTable></h:panelGrid>
+		</p:column>				
+    </p:row>
+    
+     <!-- Ligne 2 -->
+     <p:row>
+    <p:column  colspan="10">
+    <div align="center">
+    <p:panelGrid id="panelButton" columns="8">
+    
+           <p:commandButton value="Connexion"  actionListener="#{fonctionController.viderChamps}"  icon="ui-icon-plus" update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Créer une nouvelle Fonction ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    
+    
+    </p:panelGrid>
+    </div>
+    </p:column>
+    </p:row>
+    
+   </p:panelGrid>
+   </h:panelGrid>	
+   
+   			
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+		
+		
+  <!-- ConfirmDialog  -->
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  width="30%" height="25%" >
+ 		<div align="center">
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </div>
+    </p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

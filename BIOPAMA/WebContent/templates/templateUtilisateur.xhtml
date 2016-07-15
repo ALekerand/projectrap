@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>SIGAP</title>
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/bootstrap.min.css"
+		rel="stylesheet" type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/bootstrap-responsive.min.css"
+		rel="stylesheet" type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/adminia.css"
+		rel="stylesheet" type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/adminia-responsive.css"
+		rel="stylesheet" type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/font-awesome.css"
+		rel="stylesheet" type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/app.css" rel="stylesheet"
+		type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/css/pages/dashboard.css"
+		rel="stylesheet" type="text/css" />
+	<link class="user"
+		href="../../resources/1430457373000/mn4__MNP/plugins/fullcalendar/fullcalendar.css"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/cssFolder/owaspSecond.css"></link>
+
+	<!-- CSS ALekerand -->
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/cssFolder/theme.css"></link>
+	<link rel="stylesheet" type="text/css"
+		href="../../resources/cssFolder/secondStyle.css"></link>
+
+
+</h:head>
+<h:body>
+
+	<div class="navbar navbar-fixed-top">
+
+		<div class="navbar-inner">
+
+			<div class="container">
+
+				<a class="btn btn-navbar" data-target=".nav-collapse"
+					data-toggle="collapse"> <i class="icon-reorder"
+					style="color: white;"></i>
+				</a> <a class="brand" style="display:">SYSTEME INTEGRE DE LA GESTION DES AIRS PROTEGEES</a>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+	<div id="content">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="span3">
+					<span id="j_id0:templatepage:j_id17"> <!-- PARTIE MENU (GAUCHE) -->
+
+						<form>
+							<input type="hidden"
+								name="j_id0:templatepage:j_id17:j_id18:j_id19"
+								value="j_id0:templatepage:j_id17:j_id18:j_id19" /> 
+								<input type="image" src="../../resources/images/logo_artm.jpg"
+								name="j_id0:templatepage:j_id17:j_id18:j_id19:j_id22"
+								style="padding-bottom: 15px; max-width: 100%;" />
+							<div class="account-container">
+
+								<div class="account-avatar">
+									<span id="j_id0:templatepage:j_id17:j_id18:j_id19:j_id26"><img
+										src="../../resources/1430457373000/mn4__MNP/img/user.png"
+										style="padding-bottom: 15px;" /></span>
+
+								</div>
+
+								<div class="account-details">
+
+									<span class="account-name">&nbsp;</span> <span
+										class="account-actions"> <a
+										href="https://myowasp.force.com/MN4__mnp_viewmember?id=">Profile</a>
+										| <a href="https://myowasp.force.com/secur/logout.jsp">Déconnection</a>
+									</span>
+
+								</div>
+
+							</div>
+
+							<hr />
+					
+						<!-- Menu ici -->
+							<ul id="menu-accordeon">
+								<li><a href="#" title="Air Protég">Paramétrage</a>
+									<ul>
+										<li><a href="annee_scolaire.xhtml" >Année Scolaire</a></li>
+										<li><a href="sexe.xhtml">Sexe</a></li>
+										<li><a href="nationalite.xhtml">Nationalité</a></li>
+										<li><a href="pays.xhtml">Pays</a></li>
+										<li><a href="sit_matrimoniale.xhtml">Situation Matrimoniale</a></li>
+										<li><a href="niveau.xhtml">Niveau</a></li>
+										<li><a href="sante.xhtml">Santé</a></li>
+										<li><a href="diplome.xhtml">Diplome</a></li>
+										<li><a href="type_piece.xhtml">Type de pièces</a></li>
+									</ul></li>
+								<li><a href="#">Inscription</a>
+									<ul>
+										<li><a href="etudiant.xhtml">Etudiant</a></li>
+										<li><a href="#">Lien sous menu 2</a></li>
+										<li><a href="#">Lien sous menu 2</a></li>
+										<li><a href="#">Lien sous menu 2</a></li>
+									</ul></li>
+								<li><a href="#">Lien menu 3</a>
+									<ul>
+										<li><a href="#">Lien sous menu 3</a></li>
+										<li><a href="#">Lien sous menu 3</a></li>
+										<li><a href="#">Lien sous menu 3</a></li>
+										<li><a href="#">Lien sous menu 3</a></li>
+									</ul></li>
+							</ul>
+
+						</form>
+					</span>
+				</div>
+				<div class="span9">
+					<!-- Insertion du contenu ici -->
+					<ui:insert name="content">
+					</ui:insert>
+
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<!--         </div> -->
+
+	<div id="footer">
+
+		<div class="container">
+			<hr />
+			<p>&copy; 2016&nbsp;CAPA</p>
+		</div>
+
+	</div>
+</h:body>
+</html>

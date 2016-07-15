@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+<h:form id="gnlTP">	
+		<div align="center">
+		
+					<p:panel header="Paramètre Opérateur">
+						<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:80%"  border="1">
+						<h:panelGrid style="width:100%">
+						<p:panelGrid id="panelChamps" style="width:100%">
+				
+         <!-- Ligne 1 -->
+        <p:row>
+            <p:column colspan="2">Matricule *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="matOp" value="#{operateurController.slctd.opeMatricule}"
+						 requiredMessage="Indiquez un Libellé" style="width:40%;">
+											<p:ajax event="blur" listener="#{operateurController.validationChamp}" update="panelButton, message"></p:ajax>
+						</p:inputText>  
+					<p:message for="matOp"  display="icon" /></p:columnGroup>
+					</p:column>
+			
+			 <p:column colspan="2">Nom </p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="noOp" value="#{operateurController.slctd.opeNom}" style="width:70%;">
+						</p:inputText>  
+					<p:message for="noOp"  display="icon" /></p:columnGroup>
+					</p:column>			
+        </p:row>
+        
+            <!-- Ligne 2 -->
+         <p:row>
+         
+         <p:column colspan="2">Contact</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="conOp" value="#{operateurController.slctd.opeContact}" style="width:70%;">
+						</p:inputText>  
+					<p:message for="conOp"  display="icon" /></p:columnGroup>
+					</p:column>
+			
+            <p:column colspan="2">Etat Civil</p:column>
+            <p:column colspan="2">
+            
+            <p:selectOneMenu value="#{operateurController.slctd.opeEtatCivil}"  style="width:70%;">
+					<f:selectItem  itemLabel="" itemValue=""/>  
+             		<f:selectItem  itemLabel="Monsieur" itemValue="Monsieur"/>  
+             		<f:selectItem  itemLabel="Madame" itemValue="Madame"/>  
+             		<f:selectItem  itemLabel="Mademoiselle" itemValue="Mademoiselle"/>  
+       		 </p:selectOneMenu>
+					</p:column>
+							
+        </p:row>
+        
+            <!-- Ligne 3 -->
+         <p:row>
+         
+         <p:column colspan="2">EMail</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="emailOp" value="#{operateurController.slctd.opeMail}" style="width:70%;">
+						</p:inputText>  
+					<p:message for="emailOp"  display="icon" /></p:columnGroup>
+					</p:column>
+			
+            <p:column colspan="4"></p:column>
+							
+        </p:row>
+        
+                    <!-- Ligne 4 -->
+         <p:row>
+         			
+            <p:column colspan="2">Login *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="logOp" value="#{operateurController.slctd.opeLogin}" style="width:70%;">
+									<p:ajax event="blur" listener="#{operateurController.checkLogin}" update="panelButton, message"></p:ajax>		
+						</p:inputText>  
+					<p:message for="logOp"  display="icon" /></p:columnGroup>
+					</p:column>
+							
+							
+				  <p:column colspan="2">Mot de passe</p:column>
+            <p:column colspan="2"><p:panelGrid id="panelMotpass" columns="2" styleClass="panelNoBorder"><p:columnGroup id="cmotpOp1" rendered="#{operateurController.vueMotpasse1}">
+					<p:password id="motpOp1" value="#{operateurController.motpasse}" style="width:90%;">
+						</p:password>  
+					<p:message for="motpOp1"  display="icon" /></p:columnGroup>
+					<p:columnGroup id="cmotpOp2" rendered="#{operateurController.vueMotpasse2}">
+					<p:inputText id="motpOp2" value="#{operateurController.motpasse}" style="width:90%;">
+						</p:inputText>  
+					<p:message for="motpOp2"  display="icon" /></p:columnGroup>
+					
+					 <p:selectBooleanButton id="value2" value="#{operateurController.vueMotpasse1}" onLabel="" offLabel="" onIcon="ui-icon-locked" offIcon="ui-icon-unlocked" style="width:30px; height:20px;">
+          		  <p:ajax update=":gnlTP:panelMotpass" listener="#{operateurController.checkMotpasse}" />
+       				 </p:selectBooleanButton></p:panelGrid>
+					</p:column>
+					
+					
+        </p:row>
+
+     <!-- Ligne 11 -->
+     <p:row>
+    <p:column  colspan="12"><p:separator></p:separator></p:column>
+    </p:row>
+    
+     <!-- Ligne 12 -->
+     <p:row>
+    <p:column  colspan="10">
+    <div align="center">
+    <p:panelGrid id="panelButton" columns="8">
+    
+         <p:commandButton value="Nouveau"  actionListener="#{operateurController.viderCamps}"  icon="ui-icon-plus" update=":gnlTP" >
+    <p:confirm header="Confirmation" message="Voulez-vous Créer un nouveau Opérateur ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+     <p:commandButton value="Enregistrer"  actionListener="#{operateurController.create}" disabled="#{operateurController.creer}" icon="ui-icon-disk" update=":gnlTP" >
+    <p:confirm header="Confirmation" message="Voulez-vous Enregistrer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Modifier"  actionListener="#{operateurController.update}" disabled="#{operateurController.modifier}" icon="ui-icon-refresh" update=":gnlTP" >
+    <p:confirm header="Confirmation" message="Voulez-vous Modifier ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Supprimer"  actionListener="#{operateurController.delete}"  disabled="#{operateurController.supprimer}" icon="ui-icon-closethick"  update=":gnlTP" >
+    <p:confirm header="Confirmation" message="Voulez-vous Supprimer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    </p:panelGrid>
+    </div>
+    </p:column>
+    </p:row>
+    
+   </p:panelGrid>
+   </h:panelGrid>	
+   
+   				<h:panelGrid style="width:100%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{operateurController.objetListe}"
+							selectionMode="single"
+							selection="#{operateurController.slctdTb}"
+							rowKey="#{nd.opeMatricule}"
+							 emptyMessage="">
+
+							<p:ajax event="rowSelect"
+							listener="#{operateurController.onRowSelectDoss}"
+								update=":gnlTP:ndTble, :gnlTP:panelChamps"/>
+								<p:ajax event="rowUnselect"
+							listener="#{operateurController.onRowUnSelect}"
+								update=":gnlTP:ndTble, :gnlTP:panelChamps"/>	
+
+							<p:column headerText="Matricule" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.opeMatricule}" />
+							</p:column>
+							
+							<p:column headerText="Nom Opérateure" style="width:30%" styleClass="outputH">
+								<h:outputText value="#{nd.opeNom}" />
+							</p:column>
+							
+							<p:column headerText="Contact" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.opeContact}" />
+							</p:column>
+							
+							<p:column headerText="Etat Civil" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.opeEtatCivil}" />
+							</p:column>
+							
+							<p:column headerText="Email" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.opeMail}" />
+							</p:column>
+							
+							<p:column headerText="Login" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.opeLogin}" />
+							</p:column>
+
+
+						</p:dataTable></h:panelGrid>
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+		
+		
+  <!-- ConfirmDialog  -->
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  width="30%" height="25%" >
+ 		<div align="center">
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </div>
+    </p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

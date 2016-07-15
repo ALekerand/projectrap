@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+    <f:view contentType="text/html">
+    <h:head>
+        <title>BIOPAMA</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	
+        
+        </h:head>
+
+        <h:body>
+<h:form>  
+<div>
+			<div align="center" class="login-container">
+				<div class="form-actions" align="center" style="padding-top: 40%; padding-left:40px;">
+								<h:commandLink type="submit"
+									 action="/pages/accueil.jsf?faces-redirect=true"  >
+									 <h:graphicImage   value="Connexion" url="resources/images/clic1.jpg" style="height: 30px; width: 200px;"/>
+									</h:commandLink>
+							</div>
+			</div>
+		</div>
+</h:form>
+
+        </h:body>
+
+    </f:view>
+    
+    
+</html>

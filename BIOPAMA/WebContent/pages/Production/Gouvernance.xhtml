@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="gnlAap">
+			<div align="center">
+
+				<p:panel header="Mise à jour de la Gouvernance des AP">
+					<p:messages id="message" showDetail="false" autoUpdate="true"
+						closable="true" />
+
+					<h:panelGrid style="width:100%" columns="2"
+						columnClasses="zoneRech,zoneDetail" border="1">
+						
+						<h:panelGrid style="width:100%">
+						<p:fieldset>  
+						<legend> Recherche </legend>
+						<br />
+							<p:panelGrid id="panelRech" style="width:100%">
+
+ 
+ 
+ 							<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Code AP</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{gouvernanceController.rechCode}"
+												style="width:80%;" />
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Catégorie Nationale</p:column>
+								</p:row>
+								<p:row>
+								
+								<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{gouvernanceController.rechType}"
+											style="width:70%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItem itemLabel="Parc National" itemValue="P" />
+											<f:selectItem itemLabel="Reserve" itemValue="R" />
+										</p:selectOneMenu>
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Pays</p:column>
+								</p:row>
+								<p:row>
+									 <p:column colspan="2">
+					<p:selectOneMenu value="#{gouvernanceController.rechPays}"   style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             		<f:selectItems value="#{entityList.listPays}" var="tf" itemLabel="#{tf.payLibLong}" itemValue="#{tf.payLibCourt}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="2">Nom</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{gouvernanceController.rechNom}"
+												style="width:80%;" />
+									</p:column>
+
+								</p:row>
+								
+								<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelRecherche" columns="2">
+											<p:commandButton value="Recherche"
+												actionListener="#{gouvernanceController.checkRecherche}"
+												icon="ui-icon-search" update=":gnlAap">
+											</p:commandButton>
+
+											<p:commandButton value="Rafraichir"
+												actionListener="#{gouvernanceController.cleanRecherche}"
+												icon="ui-icon-arrowrefresh-1-n" update=":gnlAap">
+											</p:commandButton>
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+						
+						</p:fieldset>
+						</h:panelGrid>
+						
+						
+						
+						<h:panelGrid style="width:100%">
+							<p:panelGrid id="panelChamps" style="width:100%">
+
+
+								<!-- Ligne 1 -->
+								<p:row>
+								<p:column colspan="2">Liste AP</p:column>
+													 <p:column colspan="2">
+									<p:selectOneMenu value="#{gouvernanceController.slctdAP}"   style="width:80%;">
+									 <f:selectItem  itemLabel="" itemValue=""/>  
+				             		<f:selectItems value="#{gouvernanceController.listAirp}" var="ap" itemLabel="#{ap.aipNomUtilise}" itemValue="#{ap.aipCod}"/>  
+				             		<p:ajax listener="#{gouvernanceController.checkAPP}" process="@this" update="ApCod, ApPays, ApCat, ApNom, ApNomc, ndTble"></p:ajax>
+				       			 </p:selectOneMenu>
+									</p:column>
+									<p:column colspan="2">Code AP</p:column>
+									<p:column colspan="2">
+										<p:columnGroup>
+											<h:inputText id="ApCod"
+												value="#{gouvernanceController.slctd.airProtegee.aipCod}"
+												style="width:90%;" disabled="true" />
+											<p:message for="ApCod" display="icon" />
+										</p:columnGroup>
+									</p:column>
+									<p:column colspan="4"></p:column>
+
+								</p:row>
+
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Pays AP </p:column>
+									<p:column colspan="2">
+										<h:inputText id="ApPays"
+											value="#{gouvernanceController.slctd.airProtegee.pays.payLibLong}"
+											disabled="true" style="width:90%;" />
+									</p:column>
+
+
+									<p:column colspan="2">Catégorie Nationale </p:column>
+									<p:column colspan="2">
+										<h:inputText  id="ApCat"
+											value="#{gouvernanceController.slctd.airProtegee.aipCategNatio}" disabled="true"
+											style="width:90%;"/>
+									</p:column>
+
+									
+							
+								</p:row>
+
+
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Nom AP</p:column>
+									<p:column colspan="2">
+										<p:inputText id="ApNom"
+											value="#{gouvernanceController.slctd.airProtegee.aipNomUtilise}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:88%;" />
+									</p:column>
+
+									<p:column colspan="2">Nom Complet AP </p:column>
+									<p:column colspan="4">
+										<p:inputText id="ApNomc"
+											value="#{gouvernanceController.slctd.airProtegee.aipNomComplet}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:88%;" />
+									</p:column>
+
+									
+								</p:row>
+									<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="8"> <div align="center">--------- Gouvernance ---------</div></p:column>
+								</p:row>
+								
+								<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Type Gouvernance*</p:column>
+										<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{gouvernanceController.slctdTypeg}"
+											style="width:80%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItems value="#{gouvernanceController.listTypeGourv}" var="tm" itemLabel="#{tm.tgvLebelle}" itemValue="#{tm.tgvCod}"/>  
+				             		<p:ajax listener="#{gouvernanceController.checkTypeg}" process="@this"></p:ajax>
+										</p:selectOneMenu>
+									</p:column>
+									<p:column colspan="2">Partenaire*</p:column>
+									<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{gouvernanceController.slctdTypep}"
+											style="width:80%;">
+											<f:selectItem itemLabel="" itemValue="" />
+											<f:selectItems value="#{gouvernanceController.listPart}" var="tm" itemLabel="#{tm.libellePart}" itemValue="#{tm.codePart}"/>  
+				             		<p:ajax listener="#{gouvernanceController.checkTypep}" process="@this"></p:ajax>
+										</p:selectOneMenu>
+									</p:column>
+								</p:row>
+								
+								<!-- Ligne 2 -->
+								<p:row>
+									
+									<p:column colspan="2">Contribution</p:column>
+									<p:column colspan="2">
+										<h:inputTextarea
+											value="#{gouvernanceController.slctd.contribution}"
+											 style="width:90%;" />
+									</p:column>
+
+
+									<p:column colspan="2">Observation</p:column>
+									<p:column colspan="2">
+										<h:inputTextarea
+											value="#{gouvernanceController.slctd.gouObservation}"
+											 style="width:90%;"/>
+								
+									</p:column>
+									
+
+								</p:row>
+								
+								
+							</p:panelGrid>
+
+
+
+							<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelButton" columns="8">
+
+
+											<p:commandButton value="Nouveau"
+												actionListener="#{gouvernanceController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Créer une nouvelle AP ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+
+											<p:commandButton value="Enregistrer"
+												actionListener="#{gouvernanceController.create}"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Enregistrer ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Modifier"
+												actionListener="#{gouvernanceController.update}"
+												icon="ui-icon-pencil" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Modifier ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Annuler"
+												actionListener="#{gouvernanceController.chechCode}" rendered="false"
+												icon="ui-icon-cancel" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Annuler ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+		
+
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+							<p:panelGrid style="width:100%">
+								<h:panelGrid style="width:100%; vertical-align: top;">
+									<p:dataTable id="ndTble" var="nd"
+										value="#{gouvernanceController.objetListe}"
+										selectionMode="single"
+										selection="#{gouvernanceController.slctdTb}"
+										rowKey="#{nd.gouId}" emptyMessage="">
+
+										<p:ajax event="rowSelect"
+											listener="#{gouvernanceController.onRowSelect}"
+											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
+										<p:ajax event="rowUnselect"
+											listener="#{gouvernanceController.onRowUnSelect}"
+											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
+
+										<p:column headerText="Code" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipCod}" />
+										</p:column>
+
+										<p:column headerText="Nom AP" style="width:35%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipNomUtilise}" />
+										</p:column>
+										
+											<p:column headerText="Catégorie" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.airProtegee.aipNomUtilise}" />
+										</p:column>
+
+
+										<p:column headerText="Type Gourvernance" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.typeGouvernace.tgvLebelle}" />
+										</p:column>
+										
+										<p:column headerText="Partenaire" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.partenaire.libellePart}" />
+										</p:column>
+
+										
+
+									</p:dataTable>
+								</h:panelGrid>
+
+							</p:panelGrid>
+						</h:panelGrid>
+
+
+					</h:panelGrid>
+
+				</p:panel>
+
+
+			</div>
+
+		</h:form>
+
+
+		<!-- ConfirmDialog  -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			width="30%" height="25%">
+			<div align="center">
+				<p:commandButton value="Confirmer" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Annuler" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateCon.xhtml">
+
+	<ui:define name="content">
+<h:form id="gnlCF">	
+		<div align="center">
+		
+					<p:panel header="Choix de la Fonction">
+						<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:60%"  border="1">
+						<h:panelGrid style="width:100%">
+						<p:panelGrid id="panelChamps" style="width:100%">
+				
+      <p:row>
+      <p:column>
+       	<h:panelGrid style="width:90%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{userController.listeAss}"
+							selectionMode="single"
+							selection="#{userController.slctdTb}"
+							rowKey="#{nd.assNum}"
+							 emptyMessage="">
+
+							<p:ajax event="rowSelect"
+							listener="#{userController.onRowSelect}"
+								update=":gnlCF:ndTble, :gnlCF:panelButton"/>
+								
+								<p:column headerText="Code Fonction" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.fonCod}" />
+							</p:column>
+
+							<p:column headerText="Libellé Fonction" style="width:30%" styleClass="outputH">
+								<h:outputText value="#{nd.fonction.fonLibelle}" />
+							</p:column>
+							
+							
+								
+
+						</p:dataTable></h:panelGrid>
+		</p:column>				
+    </p:row>
+    
+     <!-- Ligne 2 -->
+     <p:row>
+    <p:column  colspan="10">
+    <div align="center">
+    
+   
+									
+    <p:panelGrid id="panelButton" columns="8">
+
+           <h:commandButton value="Connexion" action="#{userController.doAction}" />
+  
+    
+    
+    
+    </p:panelGrid>
+    </div>
+    </p:column>
+    </p:row>
+    
+   </p:panelGrid>
+   </h:panelGrid>	
+   
+   			
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+		
+		
+  <!-- ConfirmDialog  -->
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  width="30%" height="25%" >
+ 		<div align="center">
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </div>
+    </p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

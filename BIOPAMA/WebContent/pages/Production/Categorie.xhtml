@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="gnlCap">
+			<div align="center">
+
+				<p:panel header="Création d'une AP">
+					<p:messages id="message" showDetail="false" autoUpdate="true"
+						closable="true" />
+
+					<h:panelGrid style="width:100%" columns="2"
+						columnClasses="zoneRech,zoneDetail" border="1">
+						
+						<h:panelGrid style="width:100%">
+						<p:fieldset>  
+						<legend> Recherche </legend>
+						<br />
+							<p:panelGrid id="panelRech" style="width:100%">
+
+ 
+ 
+ 							<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Code AP</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{creationAPController.rechCode}"
+												style="width:90%;" />
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Type AP</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{creationAPController.rechType}"
+												style="width:90%;" />
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Pays</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{creationAPController.rechPays}"
+												style="width:90%;" />
+									</p:column>
+
+								</p:row>
+								
+								<!-- Ligne 4 -->
+								<p:row>
+									<p:column colspan="2">Nom</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="2">
+											<p:inputText 
+												value="#{creationAPController.rechNom}"
+												style="width:90%;" />
+									</p:column>
+
+								</p:row>
+								
+								<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelRecherche" columns="2">
+											<p:commandButton value="Recherche"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-search" update=":gnlCap">
+											</p:commandButton>
+
+											<p:commandButton value="Rafraichir"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-arrowrefresh-1-n" update=":gnlCap">
+											</p:commandButton>
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+						
+						</p:fieldset>
+						</h:panelGrid>
+						
+						
+						
+						<h:panelGrid style="width:100%">
+							<p:panelGrid id="panelChamps" style="width:100%">
+
+
+								<!-- Ligne 1 -->
+								<p:row>
+									<p:column colspan="2">Code AP</p:column>
+									<p:column colspan="2">
+										<p:columnGroup>
+											<p:inputText id="ApCod"
+												value="#{creationAPController.slctd.aipCod}"
+												style="width:90%;" />
+											<p:message for="ApCod" display="icon" />
+										</p:columnGroup>
+									</p:column>
+									<p:column colspan="8"></p:column>
+
+								</p:row>
+
+								<!-- Ligne 2 -->
+								<p:row>
+									<p:column colspan="2">Pays AP </p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipNomComplet}"
+											disabled="true" style="width:90%;" />
+									</p:column>
+
+
+									<p:column colspan="2">Type AP </p:column>
+									<p:column colspan="2">
+										<p:selectOneMenu
+											value="#{creationAPController.slctd.aipCategorieUicn}"
+											style="width:80%;">
+											<f:selectItem itemLabel="" itemValue="" />
+										</p:selectOneMenu>
+									</p:column>
+
+									<p:column colspan="2">Code WDPA</p:column>
+									<p:column colspan="2">
+										<p:inputText 
+											value="#{creationAPController.slctd.aipCodeWdpa}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:90%;" />
+									</p:column>
+
+
+								</p:row>
+
+
+								<!-- Ligne 3 -->
+								<p:row>
+									<p:column colspan="2">Nom AP</p:column>
+									<p:column colspan="2">
+										<p:inputText id="ApNom"
+											value="#{creationAPController.slctd.aipNomUtilise}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Nom Complet AP </p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipNomComplet}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="4"></p:column>
+
+
+
+								</p:row>
+
+
+								<!-- Ligne 3 -->
+								<p:row>
+
+
+									<p:column colspan="2">Description AP </p:column>
+									<p:column colspan="4">
+										<h:inputTextarea id="ApDes"
+											value="#{creationAPController.slctd.aipDescription}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:99%;">
+										</h:inputTextarea>
+									</p:column>
+
+									<p:column colspan="2">Description locale AP</p:column>
+									<p:column colspan="4">
+										<h:inputTextarea
+											value="#{creationAPController.slctd.aipDescriptionLocal}"
+											required="false" requiredMessage="Indiquez un objet"
+											style="width:95%;">
+										</h:inputTextarea>
+									</p:column>
+
+
+								</p:row>
+
+
+								<!-- Ligne 4 -->
+								<p:row>
+
+									<p:column colspan="2">CategorieUicn</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipCategorieUicn}"
+											required="false" requiredMessage="Indiquez une valeur"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Catégorie Nationale </p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipCategNatio}"
+											required="false" requiredMessage="Indiquez une valeur"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Biome</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipBiome}"
+											required="false" requiredMessage="Indiquez une valeur"
+											style="width:90%;" />
+									</p:column>
+
+								</p:row>
+
+								<!-- Ligne 5 -->
+								<p:row>
+
+									<p:column colspan="2">Ecoregion</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipEcoregion}"
+											required="false" requiredMessage="Indiquez une réference"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Cordonnees X</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipCordonneesX}"
+											required="false" requiredMessage="Indiquez une réference"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Cordonnees Y </p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipCordonneesY}"
+											required="false" requiredMessage="Indiquez une réference"
+											style="width:90%;" />
+									</p:column>
+
+
+								</p:row>
+
+	<!-- Ligne 6 -->
+								<p:row>
+
+									<p:column colspan="2">Superficie Administrative</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipSuperfAdminist}"
+											required="false" requiredMessage="Indiquez une réference"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Superficie Actuelle</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipSuperfActuelle}"
+											required="false" requiredMessage="Indiquez une réference"
+											style="width:90%;" />
+									</p:column>
+
+									<p:column colspan="2">Superficie Reelle</p:column>
+									<p:column colspan="2">
+										<p:inputText
+											value="#{creationAPController.slctd.aipSuperfReelle}"
+											required="false" requiredMessage="Indiquez une réference"
+											style="width:90%;" />
+									</p:column>
+
+
+								</p:row>
+
+							</p:panelGrid>
+
+
+
+							<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelButton" columns="8">
+
+
+
+
+											<p:commandButton value="Enregistrer"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlCap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Enregistrer ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Modifier"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-pencil" update=":gnlCap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Modifier ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Annuler"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-cancel" update=":gnlCap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Annuler ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+										
+
+											<h:outputText value="" />
+
+											<p:commandButton value="Affectation"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-plus" update=":gnlCap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Réseau"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-plus" update=":gnlCap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous ajouter à un réseau ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Catégorie"
+												actionListener="#{creationAPController.viderChamps}"
+												icon="ui-icon-plus" update=":gnlCap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Créer une nouvelle Fonction ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+							<p:panelGrid style="width:100%">
+								<h:panelGrid style="width:100%; vertical-align: top;">
+									<p:dataTable id="ndTble" var="nd"
+										value="#{creationAPController.objetListe}"
+										selectionMode="single"
+										selection="#{creationAPController.slctdTb}"
+										rowKey="#{nd.aipCod}" emptyMessage="">
+
+										<p:ajax event="rowSelect"
+											listener="#{creationAPController.onRowSelect}"
+											update=":gnlCap:ndTble, :gnlCap:panelChamps" />
+										<p:ajax event="rowUnselect"
+											listener="#{creationAPController.onRowUnSelect}"
+											update=":gnlCap:ndTble, :gnlCap:panelChamps" />
+
+										<p:column headerText="Code AP" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.aipCod}" />
+										</p:column>
+
+										<p:column headerText="Nom AP" style="width:30%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.aipNomUtilise}" />
+										</p:column>
+
+
+										<p:column headerText="Type AP" style="width:10%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.aipDateCreation}">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</h:outputText>
+
+										</p:column>
+
+										<p:column headerText="Pays" style="width:20%"
+											styleClass="outputH">
+											<h:outputText value="#{nd.aipNomComplet}" />
+										</p:column>
+
+									</p:dataTable>
+								</h:panelGrid>
+
+							</p:panelGrid>
+						</h:panelGrid>
+
+
+					</h:panelGrid>
+
+				</p:panel>
+
+
+			</div>
+
+		</h:form>
+
+
+		<!-- ConfirmDialog  -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			width="30%" height="25%">
+			<div align="center">
+				<p:commandButton value="Confirmer" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Annuler" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

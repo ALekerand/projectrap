@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+
+	<ui:define name="content">
+<h:form id="gnlTF">	
+		<div align="center">
+		
+					<p:panel header="Paramètre Fonction">
+						<p:messages id="message" showDetail="false" autoUpdate="true" closable="true"/>
+				
+				<h:panelGrid style="width:90%"  border="1">
+						<h:panelGrid style="width:100%">
+						<p:panelGrid id="panelChamps" style="width:100%">
+				
+      <p:row>
+         
+         <p:column colspan="2">Code Fonction</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="codf" value="#{fonctionController.slctd.fonCod}" style="width:80%;"
+						disabled="true">
+						</p:inputText>  
+					<p:message for="codf"  display="icon" /></p:columnGroup>
+					</p:column>
+					
+					<p:column colspan="4"></p:column>
+      
+			
+							
+        </p:row>
+        
+         <p:row>
+         
+          <p:column colspan="2">Type Fonction *</p:column>
+            <p:column colspan="2">
+					<p:selectOneMenu value="#{fonctionController.slctd.typeFonction.tyfLibelle}" disabled="#{fonctionController.typef}"  style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             <f:selectItems value="#{entityList.listTypeFonction}" var="tf" itemLabel="#{tf.tyfLibelle}" itemValue="#{tf.tyfLibelle}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+					
+					<p:column colspan="2">Pays *</p:column>
+            <p:column colspan="2">
+					<p:selectOneMenu value="#{fonctionController.slctd.pays.payLibCourt}" disabled="#{fonctionController.typef}"  style="width:70%;">
+					 <f:selectItem  itemLabel="" itemValue=""/>  
+             <f:selectItems value="#{entityList.listPays}" var="tf" itemLabel="#{tf.payLibLong}" itemValue="#{tf.payLibCourt}"/>  
+       			 </p:selectOneMenu>
+					
+					</p:column>
+			
+							
+        </p:row>
+        
+                 <!-- Ligne 2 -->
+         <p:row>
+         
+                <p:column colspan="2">Libellé Fonction *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="libf" value="#{fonctionController.slctd.fonLibelle}"  style="width:80%;">
+						</p:inputText>  
+					<p:message for="libf"  display="icon" /></p:columnGroup>
+					</p:column>
+         
+         <p:column colspan="4"></p:column>
+          
+        </p:row>
+        
+                        <!-- Ligne 2 -->
+         <p:row>
+         
+ 
+         <p:column colspan="2">Adresse Fonction</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="adf" value="#{fonctionController.slctd.fonAdr}" style="width:80%;">
+						</p:inputText>  
+					<p:message for="adf"  display="icon" /></p:columnGroup>
+					</p:column>
+			
+            <p:column colspan="2">N° Tel Fonction</p:column>
+            <p:column colspan="2"><p:columnGroup>
+					<p:inputText id="telf" value="#{fonctionController.slctd.fonTel}" style="width:80%;">
+											
+						</p:inputText>  
+					<p:message for="telf"  display="icon" /></p:columnGroup>
+					</p:column>
+							
+        </p:row>
+
+     <!-- Ligne 3 -->
+      <p:row>
+         
+            <p:column colspan="2">Date Debut Fonction *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+            <p:calendar id="datedeb" value="#{fonctionController.slctd.fonDatDeb}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+					<p:message for="datedeb"  display="icon" /></p:columnGroup></p:column>
+			
+			
+            <p:column colspan="2">Date Fin Fonction *</p:column>
+            <p:column colspan="2"><p:columnGroup>
+            <p:calendar id="datefin" value="#{fonctionController.slctd.fonDatFin}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
+					<p:message for="datefin"  display="icon" /></p:columnGroup></p:column>
+							
+        </p:row>
+        
+     <!-- Ligne 11 -->
+     <p:row>
+    <p:column  colspan="12"><p:separator></p:separator></p:column>
+    </p:row>
+    
+     <!-- Ligne 12 -->
+     <p:row>
+    <p:column  colspan="10">
+    <div align="center">
+    <p:panelGrid id="panelButton" columns="8">
+    
+           <p:commandButton value="Nouveau"  actionListener="#{fonctionController.viderChamps}"  icon="ui-icon-plus" update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Créer une nouvelle Fonction ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+     <p:commandButton value="Enregistrer"  actionListener="#{fonctionController.create}"  disabled="#{fonctionController.creer}" update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Enregistrer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Modifier"  actionListener="#{fonctionController.update}" disabled="#{fonctionController.modifier}" update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Modifier ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    <p:commandButton value="Supprimer"  actionListener="#{fonctionController.delete}" rendered="false"  disabled="#{fonctionController.supprimer}"  update=":gnlTF" >
+    <p:confirm header="Confirmation" message="Voulez-vous Supprimer ?" icon="ui-icon-alert" />
+    </p:commandButton>
+    
+    </p:panelGrid>
+    </div>
+    </p:column>
+    </p:row>
+    
+   </p:panelGrid>
+   </h:panelGrid>	
+   
+   				<h:panelGrid style="width:100%; vertical-align: top;">
+						<p:dataTable id="ndTble" var="nd"
+							value="#{fonctionController.objetListe}"
+							selectionMode="single"
+							selection="#{fonctionController.slctdTb}"
+							rowKey="#{nd.fonCod}"
+							 emptyMessage="">
+
+							<p:ajax event="rowSelect"
+							listener="#{fonctionController.onRowSelect}"
+								update=":gnlTF:ndTble, :gnlTF:panelChamps"/>
+								<p:ajax event="rowUnselect"
+							listener="#{fonctionController.onRowUnSelect}"
+								update=":gnlTF:ndTble, :gnlTF:panelChamps"/>	
+								
+								<p:column headerText="Code Fonction" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonCod}" />
+							</p:column>
+
+							<p:column headerText="Libellé Fonction" style="width:30%" styleClass="outputH">
+								<h:outputText value="#{nd.fonLibelle}" />
+							</p:column>
+							
+							<p:column headerText="Adresse" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonAdr}" />
+							</p:column>
+							
+							<p:column headerText="Téléphone" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonTel}" />
+							</p:column>
+							
+							<p:column headerText="Fonc Debut" style="width:10%" styleClass="outputH">
+							<h:outputText value="#{nd.fonDatDeb}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							
+								<p:column headerText="Fonc Fin" style="width:10%" styleClass="outputH">
+								<h:outputText value="#{nd.fonDatFin}">
+								<f:convertDateTime pattern="dd/MM/yyyy"  />
+								</h:outputText>
+							
+							</p:column>
+							 
+							<p:column headerText="Type Fonction" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.typeFonction.tyfLibelle}" />
+							</p:column>
+
+							<p:column headerText="Pays" style="width:20%" styleClass="outputH">
+								<h:outputText value="#{nd.pays.payLibLong}" />
+							</p:column>
+
+
+						</p:dataTable></h:panelGrid>
+		</h:panelGrid>	
+					
+					</p:panel>
+				
+		
+			</div>
+			
+		</h:form>
+		
+		
+  <!-- ConfirmDialog  -->
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"  width="30%" height="25%" >
+ 		<div align="center">
+        <p:commandButton value="Confirmer" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="Annuler" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+        </div>
+    </p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

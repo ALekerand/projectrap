@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.2
+   http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.2.xsd">
+   
+       <url-mapping > 
+        <pattern value="/Menu" /> 
+        <view-id value="/pages/index.jsf" /> 
+    </url-mapping> 
+   
+    <url-mapping > 
+        <pattern value="/Affectation" /> 
+        <view-id value="/pages/Production/Affectation.jsf" /> 
+    </url-mapping> 
+
+        <url-mapping > 
+        <pattern value="/AireProtegee" /> 
+        <view-id value="/pages/Production/Creation.jsf" /> 
+    </url-mapping>
+    
+        <url-mapping > 
+        <pattern value="/Budgets" /> 
+        <view-id value="/pages/Production/Budgets.jsf" /> 
+    </url-mapping> 
+    
+        <url-mapping > 
+        <pattern value="/Documents" /> 
+        <view-id value="/pages/Production/Documents.jsf" /> 
+    </url-mapping>
+    
+        <url-mapping > 
+        <pattern value="/Equipes" /> 
+        <view-id value="/pages/Production/Equipes.jsf" /> 
+    </url-mapping> 
+    
+        <url-mapping > 
+        <pattern value="/Equipements" /> 
+        <view-id value="/pages/Production/Equipements.jsf" /> 
+    </url-mapping> 
+    
+        <url-mapping > 
+        <pattern value="/Gouvernance" /> 
+        <view-id value="/pages/Production/Gouvernance.jsf" /> 
+    </url-mapping>
+    
+        <url-mapping > 
+        <pattern value="/Materiel" /> 
+        <view-id value="/pages/Production/Materiel.jsf" /> 
+    </url-mapping> 
+    
+        <url-mapping > 
+        <pattern value="/Missions" /> 
+        <view-id value="/pages/Production/Mission.jsf" /> 
+    </url-mapping>
+    
+        <url-mapping > 
+        <pattern value="/Notes" /> 
+        <view-id value="/pages/Production/Notes.jsf" /> 
+    </url-mapping> 
+    
+        <url-mapping > 
+        <pattern value="/Personnel" /> 
+        <view-id value="/pages/Production/Personnel.jsf" /> 
+    </url-mapping> 
+    
+        <url-mapping > 
+        <pattern value="/Reseau" /> 
+        <view-id value="/pages/Production/Reseau.jsf" /> 
+    </url-mapping>
+    
+        <url-mapping > 
+        <pattern value="/ReseauVirtuel" /> 
+        <view-id value="/pages/Production/ReseauVirtuel.jsf" /> 
+    </url-mapping>
+    
+        <url-mapping > 
+        <pattern value="/Assignations" /> 
+        <view-id value="/pages/Admin/Assignations.jsf" /> 
+    </url-mapping>
+    
+     <url-mapping > 
+        <pattern value="/Fonction" /> 
+        <view-id value="/pages/Admin/Fonction.jsf" /> 
+    </url-mapping>
+    
+     <url-mapping > 
+        <pattern value="/Pays" /> 
+        <view-id value="/pages/Admin/Pays.jsf" /> 
+    </url-mapping>
+    
+     <url-mapping > 
+        <pattern value="/Operateur" /> 
+        <view-id value="/pages/Admin/Operateur.jsf" /> 
+    </url-mapping>
+   
+</pretty-config> 

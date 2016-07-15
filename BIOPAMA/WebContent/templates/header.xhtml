@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<body>
+<div align="left" > <h:graphicImage name="images/RapacIcon.png" style=" width:48px;height:55px;"/></div>
+
+
+ <div align="center" style="width:100%;">
+				  <p:panelGrid style="width:100%;">
+								  <f:facet name="header">
+				        <p:row>
+				            <p:column colspan="13" styleClass="columnLoginHeader" >Acteur</p:column>
+				        </p:row>
+				 
+				    </f:facet>
+							<p:row>
+						        <p:column styleClass="columnLogin1">Code: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.fonction.fonCod}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						 
+						        <p:column styleClass="columnLogin1">Nom: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.operateur.opeNom}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						 
+						 		<p:column styleClass="columnLogin1">Matricule: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.operateur.opeMatricule}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						        
+						        <p:column styleClass="columnLogin1">Date: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.dateCon}" readonly="true" styleClass="inputTextLogin" style="width:90%;">
+              					  <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+          				        </h:outputText></p:column>
+						        
+						        <p:column styleClass="columnLogin1">Fonction: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.fonction.fonLibelle}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						 
+						 <p:column styleClass="columnLogin1">Pays: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.fonction.pays.payLibLong}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						 
+						 
+						 <p:column styleClass="columnLogin1">
+						 <h:panelGrid columns="2" border="0">
+						 <h:form action="j_spring_security_logout" method="post">
+	 	 <h:graphicImage name="images/exchange.png"  style=" width:16px;height:16px;"/>
+	 	 <a href="../../../../../BIOPAMA/logout.jsp" 
+						style="color: red">Déconnecter</a>
+						</h:form>
+			</h:panelGrid>
+						  </p:column>
+						 
+						 
+						  
+						    </p:row>	
+
+				</p:panelGrid>
+	 	 </div>
+
+</body>
+</html>
