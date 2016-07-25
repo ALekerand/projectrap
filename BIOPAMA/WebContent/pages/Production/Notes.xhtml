@@ -117,7 +117,7 @@
 
 								<!-- Ligne 1 -->
 								<p:row>
-									<p:column colspan="2">Code AP Mère</p:column>
+									<p:column colspan="2">Code AP</p:column>
 									<p:column colspan="2">
 										<p:columnGroup>
 											<h:inputText id="ApCod"
@@ -132,7 +132,7 @@
 								<!-- Ligne 2 -->
 								<p:row>
 									
-									<p:column colspan="2">Pays AP Mère</p:column>
+									<p:column colspan="2">Pays AP </p:column>
 									<p:column colspan="2">
 										<p:inputText
 											value="#{affectationController.slctd.airProtegee.pays.payLibLong}"
@@ -140,215 +140,318 @@
 									</p:column>
 
 
-									<p:column colspan="2">Catégorie Nationale AP Mère</p:column>
+									<p:column colspan="2">Catégorie Nationale AP</p:column>
 									<p:column colspan="2">
 										<p:inputText
 											value="#{affectationController.slctd.airProtegee.aipCategNatio}"
 											disabled="true" style="width:90%;"/>
 									</p:column>
 									
-
-								</p:row>
-								
-								<!-- Ligne 3 -->
-								<p:row>
-									<p:column colspan="2">Nom AP Mère</p:column>
-									<p:column colspan="2">
-										<p:inputText 
-											value="#{affectationController.slctd.airProtegee.aipNomUtilise}"
-											disabled="true" required="false" requiredMessage="Indiquez un objet"
-											style="width:90%;" />
-									</p:column>
-
-									<p:column colspan="2">Nom Complet AP Mère</p:column>
-									<p:column colspan="4">
-										<p:inputText
-											value="#{affectationController.slctd.airProtegee.aipNomComplet}"
-											disabled="true" required="false" requiredMessage="Indiquez un objet"
-											style="width:90%;" />
-									</p:column>
 
 								</p:row>
 								
 									<!-- Ligne 4 -->
+									
 								<p:row>
-									<p:column colspan="8"> <div align="center">--------- Réseau ---------</div></p:column>
+							
+									<p:column colspan="8"> <div align="center">--------- Période de notation ---------</div></p:column>
 								</p:row>
 								
-								<!-- Ligne 1 -->
-								<p:row>
-									<p:column colspan="2">Aire Protégée*</p:column>
-										<p:column colspan="2">
-										<p:selectOneMenu
-											value="#{affectationController.slctd.airProtegee.aipCategNatio}"
-											style="width:80%;">
-											<f:selectItem itemLabel="" itemValue="" />
-											<f:selectItem itemLabel="AP1" itemValue="P1" />
-											<f:selectItem itemLabel="AP2" itemValue="R1" />
-										</p:selectOneMenu>
-									</p:column>
-									<p:column colspan="4"></p:column>
-								</p:row>
 								
 								<!-- Ligne 2 -->
 								<p:row>
 									
-									<p:column colspan="2">Pays AP</p:column>
+									<p:column colspan="2">Date de Notation *</p:column>
 									<p:column colspan="2">
-										<p:inputText
-											value="#{affectationController.slctd.airProtegee.pays.payLibLong}"
-											disabled="true" style="width:90%;" />
+										<p:calendar  value="#{affectationController.slctd.affDatDeb}" pattern="dd/MM/yyyy" mask="true" locale="fr"  />
 									</p:column>
 
-
-									<p:column colspan="2">Catégorie Nationale</p:column>
-									<p:column colspan="2">
-										<p:inputText
-											value="#{affectationController.slctd.airProtegee.aipCategNatio}"
-											disabled="true" style="width:90%;"/>
+									<p:column colspan="4"></p:column>
 								
-									</p:column>
 									
 
 								</p:row>
 								
-								<!-- Ligne 3 -->
-								<p:row>
-									<p:column colspan="2">Nom AP</p:column>
-									<p:column colspan="2">
-										<p:inputText 
-											value="#{affectationController.slctd.airProtegee.aipNomUtilise}"
-											disabled="true" required="false" requiredMessage="Indiquez un objet"
-											style="width:90%;" />
-									</p:column>
+							</p:panelGrid >
 
-									<p:column colspan="2">Nom Complet AP</p:column>
-									<p:column colspan="4">
-										<p:inputText
-											value="#{affectationController.slctd.airProtegee.aipNomComplet}"
-											disabled="true" required="false" requiredMessage="Indiquez un objet"
-											style="width:90%;" />
-									</p:column>
-
-								</p:row>
-								
-								
-								<!-- Ligne 4 -->
-								<p:row>
-									<p:column colspan="2">Type Reseau*</p:column>
-										<p:column colspan="2">
-										<p:selectOneMenu
-											value="#{affectationController.slctd.airProtegee.aipCategNatio}"
-											style="width:80%;">
-											<f:selectItem itemLabel="" itemValue="" />
-											<f:selectItem itemLabel="Réseau 1" itemValue="P1" />
-											<f:selectItem itemLabel="Réseau 2" itemValue="R1" />
-										</p:selectOneMenu>
-									</p:column>
-								
-
-									<p:column colspan="6"> </p:column>
-									
-								</p:row>
-
-							
-								
-							</p:panelGrid>
+								<h:panelGrid id="panelButton" columns="2">
+								<h:panelGroup>
+								<div align="center"><h:outputLabel value="----------------Context----------------------" /></div>
+								<p:panelGrid  columns="8" style="margin:10px;" >
 
 
-
-							<p:row>
-								<p:column>
-									<div align="center">
-										<p:panelGrid id="panelButton" columns="8">
-
-
-											<p:commandButton value="Nouveau"
-												actionListener="#{affectationController.viderChamps}"
+												<p:commandButton value="C1.1" title="Valeur et Importance Sous indicateur Gouvernance / Partenariat"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
 												icon="ui-icon-disk" update=":gnlAap">
 												<p:confirm header="Confirmation"
-													message="Voulez-vous Créer une nouvelle AP ?"
+													message="Voulez-vous faire une Notation C1.1 ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											<p:commandButton value="C1.2" title="Valeur et Importance Sous indicateur: Classifications"
+												action="#{affectationController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+											</p:commandButton>
+											
+											<p:commandButton value="C1.3" title="Valeur et Importance Sous indicateur Espèces phare, menacées, endémismes"
+												action="#{affectationController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+											</p:commandButton>
+											
+											
+										
+
+										</p:panelGrid>
+							</h:panelGroup>
+							
+							
+							<h:panelGroup>
+								<div align="center"><h:outputLabel value="----------------Planification----------------------" /></div>
+								<p:panelGrid  columns="8" style="margin:10px;">
+
+
+											<p:commandButton value="P1" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											<p:commandButton value="P2" title="Valeur et Importance Sous indicateur: Classifications"
+												action="#{affectationController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+											</p:commandButton>
+											
+											<p:commandButton value="P3" title="Valeur et Importance Sous indicateur Espèces phare, menacées, endémismes"
+												action="#{affectationController.viderChamps}"
+												icon="ui-icon-disk" update=":gnlAap">
+											</p:commandButton>
+											
+
+										</p:panelGrid>
+							</h:panelGroup>
+								
+								<h:panelGroup>
+								<div align="center"><h:outputLabel value="----------------Intrants----------------------" /></div>
+								<p:panelGrid  columns="8" style="margin:10px;">
+
+
+											<p:commandButton value="I1" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											<p:commandButton value="I2" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											<p:commandButton value="I3" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											<p:commandButton value="I4" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											<p:commandButton value="I5" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
 													icon="ui-icon-alert" />
 											</p:commandButton>
 											
 
-											<p:commandButton value="Enregistrer"
-												actionListener="#{affectationController.create}"
+										</p:panelGrid>
+							</h:panelGroup>
+								
+								
+								<h:panelGroup>
+								<div align="center"><h:outputLabel value="----------------Processus----------------------" /></div>
+								<p:panelGrid  columns="5" style="margin:10px;">
+
+
+											<p:commandButton value="PR 1" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
 												icon="ui-icon-disk" update=":gnlAap">
 												<p:confirm header="Confirmation"
-													message="Voulez-vous Enregistrer ?"
+													message="Voulez-vous faire une affectation ?"
 													icon="ui-icon-alert" />
 											</p:commandButton>
-
-											<p:commandButton value="Modifier"
-												actionListener="#{affectationController.update}"
-												icon="ui-icon-pencil" update=":gnlAap">
+											
+												<p:commandButton value="PR 2" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
 												<p:confirm header="Confirmation"
-													message="Voulez-vous Modifier ?"
+													message="Voulez-vous faire une affectation ?"
 													icon="ui-icon-alert" />
 											</p:commandButton>
-
-											<p:commandButton value="Annuler"
-												actionListener="#{affectationController.chechCode}" rendered="false"
-												icon="ui-icon-cancel" update=":gnlAap">
+											
+											
+												<p:commandButton value="PR 3" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
 												<p:confirm header="Confirmation"
-													message="Voulez-vous Annuler ?"
+													message="Voulez-vous faire une affectation ?"
 													icon="ui-icon-alert" />
 											</p:commandButton>
-
-		
+											
+											
+												<p:commandButton value="PR 4" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR 5" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR 6" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											
+												<p:commandButton value="PR 7" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR 8" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR 9" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR10" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR11" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR12" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR13" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR14" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR15" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR16" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR17" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR18" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+												<p:commandButton value="PR19" title="Adéquation des dispositions législatives et réglementaires"
+												action="/pages/Production/FormulaireNotes?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous faire une affectation ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+											
+											
 
 										</p:panelGrid>
-									</div>
-								</p:column>
-							</p:row>
-							<p:panelGrid style="width:100%">
-								<h:panelGrid style="width:100%; vertical-align: top;">
-									<p:dataTable id="ndTble" var="nd"
-										value="#{affectationController.objetListe}"
-										selectionMode="single"
-										selection="#{affectationController.slctdTb}"
-										rowKey="#{nd.affId}" emptyMessage="">
-
-										<p:ajax event="rowSelect"
-											listener="#{affectationController.onRowSelect}"
-											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
-										<p:ajax event="rowUnselect"
-											listener="#{affectationController.onRowUnSelect}"
-											update=":gnlAap:ndTble, :gnlAap:panelChamps" />
-
-										<p:column headerText="Code AP Mère" style="width:10%"
-											styleClass="outputH">
-											<h:outputText value="#{nd.airProtegee.aipCod}" />
-										</p:column>
-
-										<p:column headerText="AP Mère" style="width:30%"
-											styleClass="outputH">
-											<h:outputText value="#{nd.airProtegee.aipNomUtilise}" />
-										</p:column>
-
-
-										<p:column headerText="Code AP Fils" style="width:10%"
-											styleClass="outputH">
-											<h:outputText value="#{nd.airProtegee.aipCod}" />
-										</p:column>
-
-										<p:column headerText="AP Fils" style="width:30%"
-											styleClass="outputH">
-											<h:outputText value="#{nd.airProtegee.aipNomUtilise}" />
-										</p:column>
-
-										<p:column headerText="Type Resau" style="width:20%"
-											styleClass="outputH">
-											<h:outputText value="#{nd.fonction.fonLibelle}" />
-										</p:column>
-										
-										
-
-									</p:dataTable>
+							</h:panelGroup>
+								
+								
+								
 								</h:panelGrid>
 
-							</p:panelGrid>
+						
 						</h:panelGrid>
 
 

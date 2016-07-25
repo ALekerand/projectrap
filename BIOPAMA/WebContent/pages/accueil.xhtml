@@ -32,7 +32,7 @@
 
 							<p:ajax event="rowSelect"
 							listener="#{userController.onRowSelect}"
-								update=":gnlCF:ndTble, :gnlCF:panelButton"/>
+								update=":gnlCF:panelButton"/>
 								
 								<p:column headerText="Code Fonction" style="width:10%" styleClass="outputH">
 								<h:outputText value="#{nd.fonction.fonCod}" />
@@ -58,7 +58,7 @@
 									
     <p:panelGrid id="panelButton" columns="8">
 
-           <h:commandButton value="Connexion" action="#{userController.doAction}" />
+           <p:commandButton value="Connexion" disabled="#{userController.creer}" style="width:200px" action="#{userController.doAction}" />
   
     
     
