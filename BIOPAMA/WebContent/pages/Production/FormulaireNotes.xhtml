@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/templateNote.xhtml">
+
+	<ui:define name="content">
+		<h:form id="gnlAap">
+			<div align="center">
+
+				<p:panel header="Formulaire de Notation des Aires Protégées">
+					<p:messages id="message" showDetail="false" autoUpdate="true"
+						closable="true" />
+						
+						 <p:panelGrid style="width:100%;">
+								  <f:facet name="header">
+				        <p:row>
+				            <p:column colspan="8" styleClass="columnLoginHeader" >Critère de notation</p:column>
+				        </p:row>
+				 
+				    </f:facet>
+							<p:row>
+						        <p:column styleClass="columnLogin1">Code AP: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.fonction.fonCod}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						 
+						        <p:column styleClass="columnLogin1">Nom AP: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.operateur.opeNom}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						 
+						 		<p:column styleClass="columnLogin1">Catégorie Nationnale: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.operateur.opeMatricule}" readonly="true" styleClass="inputTextLogin" style="width:90%;"/></p:column>
+						        
+						        <p:column styleClass="columnLogin1">Période de Notation: </p:column>
+						        <p:column styleClass="columnLogin2"><h:outputText value="#{userController.dateCon}" readonly="true" styleClass="inputTextLogin" style="width:90%;">
+              					  <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+          				        </h:outputText></p:column>
+						    </p:row>	
+
+				</p:panelGrid>
+				<br />
+
+						
+						
+						<h:panelGrid style="width:100%">
+							<p:panelGrid id="panelChamps" style="width:100%">
+ 						 <f:facet name="header">
+				        <p:row>
+				            <p:column colspan="1" style="font-weight: bold;border: 1px solid black;">N Ind</p:column>
+				            <p:column colspan="2" style="font-weight: bold;border: 1px solid black;">Elément cycle</p:column>
+				            <p:column colspan="2" style="font-weight: bold;border: 1px solid black;">Indicateur</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">Méthodologie</p:column>
+				            <p:column colspan="6" style="font-weight: bold;border: 1px solid black;">Critères - Concept mesuré - Variables</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">Note</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">Commentaire / Explication</p:column>
+				        </p:row>
+				 
+				    </f:facet>
+				    
+				    
+				     <p:row>
+				            <p:column rowspan="11" style="font-weight: bold;border: 1px solid black;">C1.1</p:column>
+				            <p:column rowspan="11" colspan="2" style="font-weight: bold;border: 1px solid black;">Contexte</p:column>
+				            <p:column rowspan="11" colspan="2" style="font-weight: bold;border: 1px solid black;">
+				            Valeur et Importance Sous indicateur <br /> Gouvernance / Partenariat
+				            
+				            </p:column>
+				            <p:column rowspan="11" colspan="4" style="border: 1px solid black;">
+				            - L'aire protégée a-t-elle une typologie de gouvernance bien définie <br />et êtes-vous en mesure d'identifier les avantages ou désavantages?<br />
+								
+							- L'aire protégée a-t-elle actuellement des partenariats <br /> en appui à la gouvernance et la gestion ?<br />
+								
+                             - Identifier la valeur et l'importance dans la gestion<br /> de l'aire protégée de l'actuelle typologie de gouvernance<br /> et des partenariats
+                             </p:column>
+				            <p:column colspan="6" style="border: 1px solid black;">Listez cinq ou plus aspects de premier plan de la <br /> gouvernance / partenariat </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">Notez l'importance de chaque aspect de premier <br /> plan pour la gouvernance de l'aire protégée par :
+				            <br />
+							0 = pas mise en application <br />
+							1 = faiblement mise en application <br />
+							2 = mise en application <br />
+							3 = considérablement mise en application <br />
+							
+							</p:column>
+				            <p:column colspan="4" style="color:white; border: 1px solid black;">communautés-partenaires pour les aspects financiers</p:column>
+				        </p:row>
+				     			<!-- Ligne 1 -->
+				        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Coordination entre gestionnaires de l'aire protégée-<br />communautés-partenaires pour les aspects financiers
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+					<!-- Ligne 2 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Coordination entre gestionnaires de l'aire protégée-<br />communautés-partenaires pour les aspects financiers
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 2 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						Coordination entre gestionnaires de l'aire protégée-<br />communautés-partenaires pour les aspects techniques
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 3 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Coordination entre gestionnaires de l'aire protégée-<br />communautés-partenaires pour les aspects financiers
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 4 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Coordination entre gestionnaires de l'aire protégée-<br />communautés-partenaires pour les aspects scientifiques
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 5 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Coordination entre gestionnaires de l'aire protégée-<br />communautés-partenaires dans la prise de décision et <br /> l'information des activités et des résultats
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 6 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						Intégration des nécessités/aspirations des gestionnaires<br /> de l'aire protégée dans la gestion du parc par les partenaires
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 7 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Intégration des nécessités/aspirations des partenaires dans<br /> la gestion du parc par les gestionnaires de l'aire protégée
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    										<!-- Ligne 8 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						 Intégration des nécessités/aspirations des communautés<br /> locales dans la gestion du parc par les gestionnaires de l'aire protégée et les partenaires
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+    					
+    										<!-- Ligne 9 -->
+			        <p:row>
+       						 <p:column colspan="6" style="border: 1px solid black;">
+       						Intégration des nécessités/aspirations des gestionnaires dans<br /> la gestion de l'aire protégée et les partenaires par les communautés
+       						 
+       						 </p:column>
+				            <p:column colspan="4" style="border: 1px solid black;">
+				            <p:selectOneMenu
+											value="#{affectationController.rechType}"
+											style="width:50%;">
+											<f:selectItem itemLabel="0" itemValue="" />
+											<f:selectItem itemLabel="1" itemValue="P" />
+											<f:selectItem itemLabel="2" itemValue="R" />
+											<f:selectItem itemLabel="3" itemValue="Q" />
+										</p:selectOneMenu>
+										</p:column>
+				            <p:column colspan="4" style="font-weight: bold;border: 1px solid black;">
+								<h:inputTextarea
+									value="#{affectationController.rechType}"
+									 style="width:99%;" />		
+				            </p:column> 
+    					</p:row>
+    					
+		
+							</p:panelGrid>
+
+
+					<!-- Ligne 1 -->
+							<p:row>
+								<p:column>
+									<div align="center">
+										<p:panelGrid id="panelButton" columns="8">
+											
+
+											<p:commandButton value="Enregistrer"
+												action="/pages/Production/Notes.jsf?faces-redirect=true"
+												icon="ui-icon-disk" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Enregistrer ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Modifier"
+												actionListener="#{affectationController.update}"
+												icon="ui-icon-pencil" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Modifier ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+											<p:commandButton value="Annuler"
+												actionListener="#{affectationController.chechCode}" rendered="false"
+												icon="ui-icon-cancel" update=":gnlAap">
+												<p:confirm header="Confirmation"
+													message="Voulez-vous Annuler ?"
+													icon="ui-icon-alert" />
+											</p:commandButton>
+
+		
+
+										</p:panelGrid>
+									</div>
+								</p:column>
+							</p:row>
+						
+						</h:panelGrid>
+
+
+
+				</p:panel>
+
+
+			</div>
+
+		</h:form>
+
+
+		<!-- ConfirmDialog  -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+			width="30%" height="25%">
+			<div align="center">
+				<p:commandButton value="Confirmer" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Annuler" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</div>
+		</p:confirmDialog>
+	</ui:define>
+
+</ui:composition>
+</html>

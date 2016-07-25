@@ -27,11 +27,29 @@
 		<p:panelMenu >
 			
 		
-		<p:submenu label=" PARAMETRES COMPTE"  rendered="#{userController.autority.menuADM}" style="font-size:13px;">
+		<p:submenu label="COMPTE"  rendered="#{userController.autority.menuADM}" >
 			 	<p:menuitem value="Opérateur" url="/pages/Admin/Operateur.jsf"  rendered="#{userController.autority.menuADM}"  />
 			 	 <p:menuitem value="Fonction" url="/pages/Admin/Fonction.jsf"  rendered="#{userController.autority.menuADM}"  />
                 <p:menuitem value="Assignation" url="/pages/Admin/Assignations.jsf"  rendered="#{userController.autority.menuADM}"  />
                 <p:menuitem value="Pays" url="/pages/Admin/Pays.jsf"  rendered="#{userController.autority.menuADM}"  />
+                
+		</p:submenu>
+		
+			<p:submenu label="PRODUCTION"  rendered="#{userController.autority.menuADM}" >
+			 	<p:menuitem value="Ressource Financière" url="/pages/Admin/RessourceFin.jsf"  rendered="#{userController.autority.menuADM}"  />
+			 	 <p:menuitem value="Type Changement" url="/pages/Admin/TypeChangement.jsf"  rendered="#{userController.autority.menuADM}"  />
+                <p:menuitem value="Type Document" url="/pages/Admin/TypeDocument.jsf"  rendered="#{userController.autority.menuADM}"  />
+                <p:menuitem value="Type Gouvernance" url="/pages/Admin/TypeGouv.jsf"  rendered="#{userController.autority.menuADM}"  />
+                
+                <p:menuitem value="Type Indicateur" url="/pages/Admin/TypeIndicateur.jsf"  rendered="#{userController.autority.menuADM}"  />
+			 	<p:menuitem value="Type Matériel" url="/pages/Admin/TypeMateriel.jsf"  rendered="#{userController.autority.menuADM}"  />
+                <p:menuitem value="Type Menace" url="/pages/Admin/TypeMenace.jsf"  rendered="#{userController.autority.menuADM}"  />
+                <p:menuitem value="Type Mission" url="/pages/Admin/TypeMission.jsf"  rendered="#{userController.autority.menuADM}"  />
+                
+                <p:menuitem value="Type Service" url="/pages/Admin/TypeService.jsf"  rendered="#{userController.autority.menuADM}"  />
+			 	<p:menuitem value="Type sous AP" url="/pages/Admin/TypeSousAp.jsf"  rendered="#{userController.autority.menuADM}"  />
+                <p:menuitem value="Type Utilisation" url="/pages/Admin/TypeUtilisation.jsf"  rendered="#{userController.autority.menuADM}"  />
+                <p:menuitem value="Type Valeur" url="/pages/Admin/TypeValeur.jsf"  rendered="#{userController.autority.menuADM}"  />
                 
 		</p:submenu>
 		
@@ -45,7 +63,7 @@
 			 	<p:menuitem value="Equipes" url="/pages/Production/Equipes.jsf"  rendered="#{userController.autority.menuADA}"/>
 			 	<p:menuitem value="Gouvernance" url="/pages/Production/Gouvernance.jsf"  rendered="#{userController.autority.menuADA}"/>
 			 	<p:menuitem value="Missions" url="/pages/Production/Mission.jsf"  rendered="#{userController.autority.menuADA}"/>
-			 	
+			 	<p:menuitem value="Notes" url="/pages/Production/Notes.jsf"  rendered="#{userController.autority.menuADA}"/>
 			 	<p:menuitem value="Personnel" url="/pages/Production/Personnel.jsf"  rendered="#{userController.autority.menuADA}"/>
 			 	<p:menuitem value="Reseau" url="/pages/Production/Reseau.jsf"  rendered="#{userController.autority.menuADA}"/>
 			 	<p:menuitem value="Reseau Virtuel" url="/pages/Production/ReseauVirtuel.jsf"  rendered="#{userController.autority.menuADA}"/>
